@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verobao en Transilvania — Vota tu ruta</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+:root{
+  --ink:#170B10;
+  --wine:#33111E;
+  --wine-light:#48192A;
+  --wine-card:#3D1524;
+  --gold:#E3A857;
+  --gold-bright:#F6C878;
+  --blood:#B93A3F;
+  --pine:#5C7A56;
+  --cream:#F5E9D8;
+  --cream-dim:#D9C6AE;
+  --line:rgba(227,168,87,0.25);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+body{
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -5%, rgba(185,58,63,0.16), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 10%, rgba(92,122,86,0.12), transparent 55%),
+    var(--ink);
+  color:var(--cream);
+  font-family:'Poppins', sans-serif;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+.wrap{max-width:1100px; margin:0 auto; padding:0 24px;}
+
+h1,h2,h3{font-family:'Cinzel', serif; letter-spacing:0.3px;}
+
+.label{
+  font-family:'Space Mono', monospace;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  font-size:11px;
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  padding:60px 0 40px;
+  text-align:center;
+  border-bottom:1px solid var(--line);
+}
+.eyebrow{
+  color:var(--gold);
+  font-weight:700;
+  margin-bottom:14px;
+}
+.hero h1{
+  font-size:clamp(28px, 5.2vw, 52px);
+  color:var(--gold-bright);
+  line-height:1.15;
+  text-shadow:0 2px 20px rgba(0,0,0,0.5);
+  max-width:900px;
+  margin:0 auto 14px;
+}
+.hero .verobao-tag{
+  font-family:'Space Mono', monospace;
+  font-size:13px;
+  color:var(--cream-dim);
+  max-width:640px;
+  margin:0 auto 18px;
+}
+.hero p.sub{
+  font-size:clamp(15px,2vw,18px);
+  color:var(--cream-dim);
+  max-width:640px;
+  margin:0 auto 30px;
+  font-weight:500;
+}
+
+.skyline{width:100%; max-width:760px; height:auto; margin:0 auto 30px; display:block; opacity:0.92;}
+
+.facts{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
+  max-width:820px; margin:0 auto 18px;
+}
+.fact-chip{
+  background:var(--wine-light);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:10px 18px;
+  font-family:'Space Mono', monospace;
+  font-size:13px;
+  font-weight:700;
+  color:var(--cream);
+  white-space:nowrap;
+}
+.fact-chip b{color:var(--gold-bright);}
+
+.free-note{
+  max-width:560px; margin:0 auto; text-align:center;
+  font-size:13px; color:var(--cream-dim);
+  background:rgba(0,0,0,0.2); border:1px dashed var(--line);
+  border-radius:12px; padding:10px 16px;
+}
+.free-note b{color:var(--gold-bright);}
+
+/* ---------- SECTION HEADERS ---------- */
+.section{padding:52px 0;}
+.section-head{text-align:center; margin-bottom:32px;}
+.section-head .label{color:var(--pine); display:block; margin-bottom:8px;}
+.section-head h2{font-size:clamp(24px,4vw,34px); color:var(--gold-bright);}
+.section-head p{color:var(--cream-dim); max-width:580px; margin:10px auto 0; font-size:15px;}
+
+/* ---------- CALENDARIO VACACIONES ---------- */
+.cal-wall{
+  max-width:420px; margin:0 auto;
+  background:var(--cream); border-radius:16px; padding:18px 18px 20px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.4);
+}
+.cal-month{
+  font-family:'Cinzel',serif; font-weight:700; font-size:15px;
+  color:var(--ink); text-align:center; margin-bottom:12px; letter-spacing:0.5px;
+}
+.cal-head, .cal-grid{
+  display:grid; grid-template-columns:repeat(7, 1fr); gap:5px;
+}
+.cal-head span{
+  font-family:'Space Mono',monospace; font-size:10px; font-weight:700;
+  color:var(--wine); text-align:center; opacity:0.6;
+}
+.cal-grid{margin-top:5px;}
+.cal-cell{
+  aspect-ratio:1; border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Space Mono',monospace; font-weight:700; font-size:13px;
+  color:var(--ink); background:rgba(23,11,16,0.05); position:relative;
+}
+.cal-cell.dim{opacity:0.28;}
+.cal-cell.vac{background:var(--gold-bright); color:var(--ink);}
+.cal-cell.weekend{background:rgba(92,122,86,0.35); color:var(--ink);}
+.cal-cell.travel{background:rgba(23,11,16,0.05); color:var(--ink); border:1.5px dashed rgba(23,11,16,0.3);}
+.cal-cell.travel::after{content:"✈️"; position:absolute; bottom:-6px; right:-4px; font-size:11px;}
+.cal-cell.fest-moved{background:rgba(124,144,196,0.55); color:var(--ink);}
+.cal-cell.fest::after{
+  content:"🎉"; position:absolute; bottom:-6px; right:-4px; font-size:11px;
+}
+.cal-legend{
+  display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+  margin-top:14px; font-family:'Space Mono',monospace; font-size:10.5px; color:var(--cream-dim);
+}
+.cal-legend span{display:flex; align-items:center; gap:5px;}
+.cal-swatch{width:10px; height:10px; border-radius:3px; display:inline-block;}
+.cal-note{
+  text-align:center; max-width:560px; margin:20px auto 0; font-size:13.5px; color:var(--cream-dim);
+}
+.cal-note b{color:var(--gold-bright);}
+
+/* ---------- MINI CALENDARIO POR OPCIÓN ---------- */
+.mini-cal{display:grid; grid-template-columns:repeat(6,1fr); gap:4px; margin-top:2px;}
+.mini-cell{
+  border-radius:7px; padding:5px 2px; text-align:center;
+  font-family:'Space Mono',monospace;
+}
+.mini-cell .d{font-size:9px; opacity:0.75; display:block;}
+.mini-cell .n{font-size:12px; font-weight:700; display:block;}
+.mc-cluj{background:rgba(124,144,196,0.35); color:#DCE3F5;}
+.mc-sibiu{background:rgba(227,168,87,0.35); color:#FCE6BE;}
+.mc-sigh{background:rgba(185,58,63,0.35); color:#F5C7C9;}
+.mc-carp{background:rgba(92,122,86,0.4); color:#D3E3CE;}
+.mc-return{background:rgba(255,255,255,0.1); color:var(--cream-dim);}
+
+/* ---------- BOARDING PASS ---------- */
+.pass{
+  background:var(--wine);
+  border:1px solid var(--line);
+  border-radius:18px;
+  display:flex;
+  flex-wrap:wrap;
+  overflow:hidden;
+  box-shadow:0 20px 50px rgba(0,0,0,0.35);
+}
+.pass-seg{
+  flex:1 1 220px;
+  padding:26px 28px;
+  position:relative;
+}
+.pass-seg + .pass-seg{
+  border-left:2px dashed rgba(227,168,87,0.35);
+}
+.pass-seg .label{color:var(--gold); margin-bottom:10px;}
+.pass-route{font-family:'Cinzel',serif; font-size:22px; color:var(--cream); margin-bottom:6px; font-weight:700;}
+.pass-time{font-family:'Space Mono',monospace; font-size:26px; color:var(--gold-bright); font-weight:700;}
+.pass-date{color:var(--cream-dim); font-size:13px; margin-top:4px;}
+.pass-price{
+  font-family:'Space Mono',monospace; font-size:13px; font-weight:700;
+  color:var(--ink); background:var(--gold-bright);
+  display:inline-block; border-radius:999px; padding:4px 12px; margin-top:12px;
+}
+.pass-note{
+  flex:1 1 100%;
+  background:rgba(0,0,0,0.18);
+  padding:16px 28px;
+  font-size:13.5px;
+  color:var(--cream-dim);
+  border-top:1px solid var(--line);
+}
+.pass-note b{color:var(--gold-bright);}
+
+/* ---------- CIUDADES ---------- */
+.grid-places{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(210px,1fr));
+  gap:16px;
+}
+.place-card{
+  background:var(--wine-card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:22px 20px;
+  text-align:center;
+}
+.place-icon{
+  width:64px; height:64px; margin:0 auto 14px;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:30px;
+  background:radial-gradient(circle at 35% 30%, rgba(246,200,120,0.25), rgba(0,0,0,0.2));
+  border:1px solid var(--line);
+}
+.place-name{font-family:'Cinzel',serif; font-size:17px; color:var(--cream); margin-bottom:8px; font-weight:700;}
+.place-desc{font-size:13px; color:var(--cream-dim);}
+
+/* ---------- OPTION CARDS ---------- */
+.grid-options{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+  gap:18px;
+}
+.opt-card{
+  background:var(--wine-card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:24px 22px;
+  display:flex; flex-direction:column; gap:14px;
+  position:relative;
+  overflow:hidden;
+  transition:transform .18s ease, border-color .18s ease;
+}
+.opt-card:hover{transform:translateY(-4px); border-color:var(--gold);}
+.opt-card::before{
+  content:"";
+  position:absolute; top:0; left:0; width:100%; height:4px;
+  background:var(--accent, var(--gold));
+}
+.opt-card.c-a{--accent:#8CA684;}
+.opt-card.c-b{--accent:#B93A3F;}
+.opt-card.c-c{--accent:#7C90C4;}
+.opt-card.c-d{--accent:#E3A857;}
+
+.opt-top{display:flex; align-items:center; gap:10px;}
+.opt-badge{
+  font-family:'Cinzel',serif; font-weight:900; font-size:20px;
+  width:38px; height:38px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--accent); color:var(--ink);
+  flex:none;
+}
+.opt-title{font-family:'Cinzel',serif; font-size:17px; font-weight:700; color:var(--cream);}
+.opt-route{
+  font-family:'Space Mono',monospace; font-size:12.5px; color:var(--gold-bright);
+  background:rgba(0,0,0,0.22); border-radius:8px; padding:8px 10px;
+}
+.tag-row{display:flex; flex-wrap:wrap; gap:6px;}
+.tag{
+  font-family:'Space Mono',monospace; font-size:10px; font-weight:700;
+  text-transform:uppercase; letter-spacing:0.5px;
+  padding:5px 9px; border-radius:6px;
+}
+.tag.pro{background:rgba(140,166,132,0.18); color:#B7CDAF; border:1px solid rgba(140,166,132,0.4);}
+.tag.con{background:rgba(185,58,63,0.16); color:#E6A3A6; border:1px solid rgba(185,58,63,0.4);}
+
+.ratings{display:flex; flex-direction:column; gap:6px; font-size:12px;}
+.rate-row{display:flex; align-items:center; gap:8px;}
+.rate-label{width:112px; color:var(--cream-dim); flex:none;}
+.dots{display:flex; gap:3px;}
+.dot{width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.14);}
+.dot.on{background:var(--accent);}
+
+.opt-quote{
+  font-size:13px; font-style:italic; color:var(--cream-dim);
+  border-left:2px solid var(--accent); padding-left:10px; margin-top:auto;
+}
+
+.pina-note{
+  text-align:center; font-size:12.5px; color:var(--cream-dim);
+  max-width:520px; margin:0 auto 28px;
+  background:rgba(0,0,0,0.18); border:1px dashed var(--line);
+  border-radius:10px; padding:8px 14px;
+}
+.pina-note b{color:var(--gold-bright);}
+
+/* ---------- TABLE ---------- */
+.table-scroll{overflow-x:auto; border-radius:14px; border:1px solid var(--line);}
+table{width:100%; border-collapse:collapse; min-width:680px; background:var(--wine);}
+thead th{
+  font-family:'Space Mono',monospace; text-transform:uppercase; font-size:11px;
+  letter-spacing:0.5px; color:var(--gold); text-align:left;
+  padding:14px 16px; background:rgba(0,0,0,0.25); border-bottom:1px solid var(--line);
+}
+tbody td{
+  padding:14px 16px; font-size:13.5px; color:var(--cream-dim);
+  border-bottom:1px solid var(--line);
+}
+tbody tr:last-child td{border-bottom:none;}
+tbody td.name{color:var(--cream); font-weight:700; font-family:'Cinzel',serif;}
+tbody tr:hover{background:rgba(227,168,87,0.06);}
+
+/* ---------- COCHE ---------- */
+.car-box{
+  background:var(--wine); border:1px solid var(--line); border-radius:18px;
+  padding:26px 28px;
+}
+.car-row{
+  display:flex; justify-content:space-between; align-items:center; gap:14px;
+  padding:12px 0; border-bottom:1px solid var(--line);
+  font-size:14px;
+}
+.car-row:last-child{border-bottom:none;}
+.car-row .who{color:var(--cream); font-weight:600;}
+.car-row .days{
+  font-family:'Space Mono',monospace; font-weight:700; color:var(--gold-bright);
+  background:rgba(0,0,0,0.22); border-radius:8px; padding:4px 10px; white-space:nowrap;
+}
+.car-foot{margin-top:16px; font-size:12.5px; color:var(--cream-dim);}
+
+/* ---------- TIMELINE ---------- */
+.timeline{display:flex; flex-direction:column; gap:0; position:relative;}
+.timeline::before{
+  content:""; position:absolute; left:27px; top:8px; bottom:8px; width:2px;
+  background:linear-gradient(var(--gold), var(--pine));
+  opacity:0.5;
+}
+.t-item{display:flex; gap:20px; padding:18px 0;}
+.t-dot{
+  flex:none; width:56px; height:56px; border-radius:50%;
+  background:var(--wine-light); border:2px solid var(--gold);
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; z-index:1;
+}
+.t-body{padding-top:4px;}
+.t-day{font-family:'Space Mono',monospace; color:var(--gold); font-size:12px; font-weight:700; margin-bottom:3px;}
+.t-title{font-family:'Cinzel',serif; font-size:17px; color:var(--cream); margin-bottom:5px; font-weight:700;}
+.t-desc{font-size:13.5px; color:var(--cream-dim); max-width:560px;}
+.t-desc em{color:var(--gold-bright); font-style:normal; font-weight:600;}
+
+/* ---------- CTA ---------- */
+.cta{
+  text-align:center; padding:60px 24px; margin:20px auto 0; max-width:720px;
+  background:radial-gradient(ellipse at 50% 0%, rgba(185,58,63,0.22), transparent 70%), var(--wine);
+  border:1px solid var(--line); border-radius:22px;
+}
+.seal{
+  width:96px; height:96px; margin:0 auto 20px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, var(--gold-bright), var(--blood) 75%);
+  display:flex; align-items:center; justify-content:center;
+  font-size:40px; box-shadow:0 10px 25px rgba(185,58,63,0.35);
+  border:3px solid rgba(0,0,0,0.25);
+}
+.cta h2{font-size:clamp(22px,4vw,30px); color:var(--gold-bright); margin-bottom:12px;}
+.cta p{color:var(--cream-dim); font-size:15px; max-width:480px; margin:0 auto 10px;}
+.cta p.small{font-size:12.5px; opacity:0.8; margin-bottom:26px;}
+.cta-btn{
+  display:inline-block; font-family:'Space Mono',monospace; font-weight:700;
+  text-transform:uppercase; letter-spacing:1px; font-size:14px;
+  background:var(--gold-bright); color:var(--ink); border-radius:999px;
+  padding:16px 34px; text-decoration:none; box-shadow:0 12px 30px rgba(246,200,120,0.25);
+}
+.deadline{
+  margin-top:22px; display:inline-block; font-family:'Space Mono',monospace; font-size:12px;
+  color:var(--cream-dim); border:1px dashed var(--line); border-radius:10px; padding:8px 14px;
+}
+.vote-btns{display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:20px 0 10px;}
+.vote-btn{
+  font-family:'Space Mono',monospace; font-weight:700; font-size:14px;
+  text-decoration:none; color:var(--ink);
+  background:var(--gold-bright); border-radius:12px;
+  padding:14px 0; width:78px; text-align:center;
+  box-shadow:0 8px 18px rgba(246,200,120,0.25);
+  transition:transform .15s ease;
+}
+.vote-btn:hover{transform:translateY(-3px);}
+.vote-btn:nth-child(2){background:#E6A3A6;}
+.vote-btn:nth-child(3){background:#AEC0E8;}
+.vote-btn:nth-child(4){background:#B7CDAF;}
+.vote-hint{font-size:12px; color:var(--cream-dim); margin-bottom:6px;}
+
+footer{
+  text-align:center; padding:40px 24px 60px; color:var(--cream-dim);
+  font-family:'Space Mono',monospace; font-size:11.5px; letter-spacing:0.5px; opacity:0.7;
+}
+
+@media (max-width:640px){
+  .hero{padding:44px 0 28px;}
+  .section{padding:36px 0;}
+  .pass-seg + .pass-seg{border-left:none; border-top:2px dashed rgba(227,168,87,0.35);}
+  .t-item{gap:14px;}
+  .t-dot{width:46px; height:46px; font-size:18px;}
+  .car-row{flex-direction:column; align-items:flex-start; gap:6px;}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow label">🧛‍♂️ VEROBAO · Diciembre 2026</div>
+    <h1>Transilvania o nada: el viaje que va a quedar para la historia del grupo</h1>
+    <div class="verobao-tag">Tras los viajes de Macedonia, Eslovenia o Alsacia... llegan los vampiros jajaja.</div>
+    <p class="sub">Mercadillos navideños, castillos de peli de miedo y una piña tan grande que van a temblar hasta los rumanos. 3 días libres, cero excusas.</p>
+
+    <svg class="skyline" viewBox="0 0 760 120" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="0,120 0,70 30,70 30,50 45,35 60,50 60,70 90,70 90,40 110,40 110,20 130,20 130,40 150,40 150,80 190,80 190,55 210,35 230,55 230,80 270,80 270,60 290,60 290,30 305,15 320,30 320,60 340,60 340,90 400,90 400,45 420,45 420,25 440,10 460,25 460,45 480,45 480,90 540,90 540,65 555,65 555,40 570,25 585,40 585,65 600,65 600,90 640,90 640,55 660,55 660,30 675,15 690,30 690,55 710,55 710,80 760,80 760,120" fill="var(--gold)" opacity="0.5"/>
+      <circle cx="140" cy="22" r="9" fill="var(--gold-bright)" opacity="0.85"/>
+      <path d="M600 30 q6 -6 12 0 q-3 3 -6 3 t-6 -3z" fill="var(--cream)" opacity="0.5"/>
+      <path d="M660 45 q5 -5 10 0 q-2 3 -5 3 t-5 -3z" fill="var(--cream)" opacity="0.4"/>
+    </svg>
+
+    <div class="facts">
+      <span class="fact-chip">📅 <b>2–7 DIC 2026</b></span>
+      <span class="fact-chip">✈️ <b>MAD ↔ CLJ</b></span>
+      <span class="fact-chip">👥 <b>TODO EL GRUPO</b></span>
+    </div>
+
+    <div class="car-box" style="max-width:520px; margin:0 auto; text-align:left;">
+      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:4px; text-align:center;">✈️ ¿Te mueves por libre?</div>
+      <div class="car-row"><span class="who">Jueves 3 dic → Cluj (llegas un día tarde)</span><span class="days">120 €</span></div>
+      <div class="car-row"><span class="who">Viernes 4 dic → Cluj (te unes el viernes)</span><span class="days">100 €</span></div>
+      <div class="car-row"><span class="who">Martes 8 dic → Madrid (festivo en Madrid, no hace falta pedirlo)</span><span class="days">115 €</span></div>
+      <div class="car-foot" style="text-align:center;">El vuelo de grupo (miércoles 2 → lunes 7) es el de referencia, pero nadie se queda fuera por moverse por libre. Avisad por el grupo y lo cuadramos. Ojo: el martes 8 es festivo (Inmaculada) en Madrid, así que esa opción sale gratis de vacaciones.</div>
+    </div>
+  </section>
+
+  <!-- CALENDARIO VACACIONES -->
+  <section class="section">
+    <div class="section-head">
+      <span class="label">🗓️ Antes de pedir el finde libre</span>
+      <h2>¿Cuántos días de vacaciones hacen falta?</h2>
+    </div>
+    <div class="cal-wall">
+      <div class="cal-month">DICIEMBRE 2026</div>
+      <div class="cal-head">
+        <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-cell dim">30</div>
+        <div class="cal-cell dim">1</div>
+        <div class="cal-cell travel">2</div>
+        <div class="cal-cell vac">3</div>
+        <div class="cal-cell vac">4</div>
+        <div class="cal-cell weekend">5</div>
+        <div class="cal-cell weekend">6</div>
+        <div class="cal-cell fest-moved fest">7</div>
+        <div class="cal-cell dim">8</div>
+        <div class="cal-cell dim">9</div>
+        <div class="cal-cell dim">10</div>
+        <div class="cal-cell dim">11</div>
+        <div class="cal-cell dim">12</div>
+        <div class="cal-cell dim">13</div>
+      </div>
+      <div class="cal-legend">
+        <span><i class="cal-swatch" style="background:var(--gold-bright)"></i>Vacaciones a pedir</span>
+        <span><i class="cal-swatch" style="background:rgba(92,122,86,0.6)"></i>Finde (gratis)</span>
+        <span><i class="cal-swatch" style="background:rgba(124,144,196,0.7)"></i>🎉 Festivo trasladado</span>
+        <span>✈️ Viajas, no hace falta pedirlo</span>
+      </div>
+    </div>
+    <p class="cal-note">Solo hacen falta <b>2 días de curro</b>: jueves y viernes. El miércoles currad tranquilos, que el vuelo sale de noche (20:55h) y da tiempo a todo. El sábado y el domingo ya son gratis, y el <b>lunes 7 también</b>: la fiesta del domingo 6 (Día de la Constitución) cae en domingo, así que este año se traslada al lunes. Cuadre perfecto.</p>
+  </section>
+
+  <!-- BOARDING PASS -->
+  <section class="section">
+    <div class="section-head">
+      <span class="label">✈️ Logística</span>
+      <h2>Tu billete (ya casi comprado)</h2>
+    </div>
+    <div class="pass">
+      <div class="pass-seg">
+        <div class="label">Ida</div>
+        <div class="pass-route">MAD → CLJ</div>
+        <div class="pass-time">20:55h</div>
+        <div class="pass-date">Miércoles 2 de diciembre</div>
+        <div class="pass-price">69,99 €</div>
+      </div>
+      <div class="pass-seg">
+        <div class="label">Vuelta</div>
+        <div class="pass-route">CLJ → MAD</div>
+        <div class="pass-time">17:20h</div>
+        <div class="pass-date">Lunes 7 de diciembre</div>
+        <div class="pass-price">79,99 €</div>
+      </div>
+      <div class="pass-note">5 días de calendario, <b>3 de vacaciones de verdad</b>. El resto lo pone el curro — así que a exprimir cada minuto. Vuelos: <b>149,98 € ida y vuelta</b> por persona (a precio de hoy, que esto vuela).</div>
+    </div>
+  </section>
+
+  <!-- CIUDADES -->
+  <section class="section">
+    <div class="section-head">
+      <span class="label">🎨 Postales</span>
+      <h2>¿Qué nos vamos a encontrar?</h2>
+      <p>Para que os hagáis a la idea antes de votar: esto es lo que hay en cada parada.</p>
+    </div>
+    <div class="grid-places">
+      <div class="place-card">
+        <div class="place-icon">🎓</div>
+        <div class="place-name">Cluj-Napoca</div>
+        <div class="place-desc">La ciudad estudiantil con más ambiente de toda Rumanía. Casco histórico, terrazas y el primer mercadillo navideño del viaje.</div>
+      </div>
+      <div class="place-card">
+        <div class="place-icon">👁️</div>
+        <div class="place-name">Sibiu</div>
+        <div class="place-desc">Plaza medieval con casas que parecen tener ojos en el tejado. El mercadillo navideño más bonito del país y castillos a tiro de piedra.</div>
+      </div>
+      <div class="place-card">
+        <div class="place-icon">🏰</div>
+        <div class="place-name">Sighișoara</div>
+        <div class="place-desc">Pueblo medieval Patrimonio UNESCO, cuna del Drácula real. Calles empedradas, torres de colores y postal en cada esquina.</div>
+      </div>
+      <div class="place-card">
+        <div class="place-icon">⛰️</div>
+        <div class="place-name">Cárpatos</div>
+        <div class="place-desc">Montaña de verdad, nieve, casa rural con chimenea y barbacoa. La noche que se convierte en leyenda de Verobao.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPCIONES -->
+  <section class="section">
+    <div class="section-head">
+      <span class="label">🗺️ A votación</span>
+      <h2>4 caminos, 1 solo grupo</h2>
+      <p>Todas las opciones llevan mercadillos, castillos y cañas de serie. Lo que cambia es la ruta, cuántas veces hacéis la maleta y el nivel de bureo.</p>
+    </div>
+
+    <div class="grid-options">
+
+      <!-- OPCIÓN A -->
+      <div class="opt-card c-a">
+        <div class="opt-top">
+          <div class="opt-badge">A</div>
+          <div class="opt-title">La clásica equilibrada</div>
+        </div>
+        <div class="opt-route">2 noches Cluj · 3 noches Sibiu</div>
+        <div class="mini-cal">
+          <div class="mini-cell mc-cluj"><span class="d">X 2</span><span class="n">Cluj</span></div>
+          <div class="mini-cell mc-cluj"><span class="d">J 3</span><span class="n">Cluj</span></div>
+          <div class="mini-cell mc-sibiu"><span class="d">V 4</span><span class="n">Sibiu</span></div>
+          <div class="mini-cell mc-sibiu"><span class="d">S 5</span><span class="n">Sibiu</span></div>
+          <div class="mini-cell mc-sibiu"><span class="d">D 6</span><span class="n">Sibiu</span></div>
+          <div class="mini-cell mc-return"><span class="d">L 7</span><span class="n">Vuelo</span></div>
+        </div>
+        <div class="tag-row">
+          <span class="tag pro">Máximo confort</span>
+          <span class="tag pro">Solo 1 cambio de hotel</span>
+          <span class="tag con">Menos aventura extra</span>
+        </div>
+        <div class="ratings">
+          <div class="rate-row"><span class="rate-label">Comodidad</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div>
+          <div class="rate-row"><span class="rate-label">Nivel bureo</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div>
+          <div class="rate-row"><span class="rate-label">Logística fácil</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div>
+        </div>
+        <div class="opt-quote">Para quien quiere disfrutar del viaje sin convertirlo en una mudanza.</div>
+      </div>
+
+      <!-- OPCIÓN B -->
+      <div class="opt-card c-b">
+        <div class="opt-top">
+          <div class="opt-badge">B</div>
+          <div class="opt-title">Fiebre de montaña</div>
+        </div>
+        <div class="opt-route">2 noches Cluj · 2 noches Sibiu · 1 noche Cárpatos</div>
+        <div class="mini-cal">
+          <div class="mini-cell mc-cluj"><span class="d">X 2</span><span class="n">Cluj</span></div>
+          <div class="mini-cell mc-cluj"><span class="d">J 3</span><span class="n">Cluj</span></div>
+          <div class="mini-cell mc-carp"><span class="d">V 4</span><span class="n">Cárp.</span></div>
+          <div class="mini-cell mc-sibiu"><span class="d">S 5</span><span class="n">Sibiu</span></div>
+          <div class="mini-cell mc-sibiu"><span class="d">D 6</span><span class="n">Sibiu</span></div>
+          <div class="mini-cell mc-return"><span class="d">L 7</span><span class="n">Vuelo</span></div>
+        </div>
+        <div class="tag-row">
+          <span class="tag pro">Nivel bureo 100%</span>
+          <span class="tag pro">Barbacoa + nieve + chimenea</span>
+          <span class="tag con">Más logística</span>
+          <span class="tag con">2 cambios de hotel</span>
+        </div>
+        <div class="ratings">
+          <div class="rate-row"><span class="rate-label">Comodidad</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div>
+          <div class="rate-row"><span class="rate-label">Nivel bureo</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div>
+          <div class="rate-row"><span class="rate-label">Logística fácil</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div>
+        </div>
+        <div class="opt-quote">La noche que se va a contar en el grupo durante años.</div>
+      </div>
+
+      <!-- OPCIÓN C -->
+      <div class="opt-card c-c">
+        <div class="opt-top">
+          <div class="opt-badge">C</div>
+          <div class="opt-title">Ruta 3 paradas</div>
+        </div>
+        <div class="opt-route">2 noches Cluj · 1 noche Sighișoara · 2 noches Sibiu</div>
+        <div class="mini-cal">
+          <div class="mini-cell mc-cluj"><span class="d">X 2</span><span class="n">Cluj</span></div>
+          <div class="mini-cell mc-cluj"><span class="d">J 3</span><span class="n">Cluj</span></div>
+          <div class="mini-cell mc-sigh"><span class="d">V 4</span><span class="n">Sigh.</span></div>
+          <div class="mini-cell mc-sibiu"><span class="d">S 5</span><span class="n">Sibiu</span></div>
+          <div class="mini-cell mc-sibiu"><span class="d">D 6</span><span class="n">Sibiu</span></div>
+          <div class="mini-cell mc-return"><span class="d">L 7</span><span class="n">Vuelo</span></div>
+        </div>
+        <div class="tag-row">
+          <span class="tag pro">Cuna de Drácula</span>
+          <span class="tag pro">Pueblo medieval UNESCO</span>
+          <span class="tag con">3 cambios de hotel</span>
+          <span class="tag con">Maletas viajeras</span>
+        </div>
+        <div class="ratings">
+          <div class="rate-row"><span class="rate-label">Comodidad</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div>
+          <div class="rate-row"><span class="rate-label">Nivel bureo</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
+          <div class="rate-row"><span class="rate-label">Logística fácil</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div>
+        </div>
+        <div class="opt-quote">Para los que viajan con la maleta como si fuera una mochila.</div>
+      </div>
+
+      <!-- OPCIÓN D -->
+      <div class="opt-card c-d">
+        <div class="opt-top">
+          <div class="opt-badge">D</div>
+          <div class="opt-title">Sighișoara de paso</div>
+        </div>
+        <div class="opt-route">2 noches Cluj · 3 noches Sibiu · parada viernes en Sighișoara</div>
+        <div class="mini-cal">
+          <div class="mini-cell mc-cluj"><span class="d">X 2</span><span class="n">Cluj</span></div>
+          <div class="mini-cell mc-cluj"><span class="d">J 3</span><span class="n">Cluj</span></div>
+          <div class="mini-cell mc-sigh"><span class="d">V 4</span><span class="n">Sigh.*</span></div>
+          <div class="mini-cell mc-sibiu"><span class="d">S 5</span><span class="n">Sibiu</span></div>
+          <div class="mini-cell mc-sibiu"><span class="d">D 6</span><span class="n">Sibiu</span></div>
+          <div class="mini-cell mc-return"><span class="d">L 7</span><span class="n">Vuelo</span></div>
+        </div>
+        <div style="font-size:10.5px; color:var(--cream-dim); margin-top:-6px;">*Parada de día en Sighișoara, se duerme en Sibiu</div>
+        <div class="tag-row">
+          <span class="tag pro">Lo mejor de los dos mundos</span>
+          <span class="tag pro">1 solo cambio de hotel</span>
+          <span class="tag con">Viernes maratoniano</span>
+        </div>
+        <div class="ratings">
+          <div class="rate-row"><span class="rate-label">Comodidad</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
+          <div class="rate-row"><span class="rate-label">Nivel bureo</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
+          <div class="rate-row"><span class="rate-label">Logística fácil</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
+        </div>
+        <div class="opt-quote">Ves Sighișoara, comes de fábula y duermes siempre en el mismo sitio. El truco del almendruco.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TABLA COMPARATIVA -->
+  <section class="section">
+    <div class="section-head">
+      <span class="label">📊 Resumen</span>
+      <h2>Todo de un vistazo</h2>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Opción</th>
+            <th>Cluj</th>
+            <th>Sibiu</th>
+            <th>Extra</th>
+            <th>Comodidad</th>
+            <th>Bureo</th>
+            <th>Logística</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name">A · Clásica</td>
+            <td>2 noches</td>
+            <td>3 noches</td>
+            <td>—</td>
+            <td>●●●●●</td>
+            <td>●●●○○</td>
+            <td>●●●●●</td>
+          </tr>
+          <tr>
+            <td class="name">B · Montaña</td>
+            <td>2 noches</td>
+            <td>2 noches</td>
+            <td>1 noche Cárpatos</td>
+            <td>●●●○○</td>
+            <td>●●●●●</td>
+            <td>●●○○○</td>
+          </tr>
+          <tr>
+            <td class="name">C · 3 Paradas</td>
+            <td>2 noches</td>
+            <td>2 noches</td>
+            <td>1 noche Sighișoara</td>
+            <td>●●○○○</td>
+            <td>●●●●○</td>
+            <td>●●○○○</td>
+          </tr>
+          <tr>
+            <td class="name">D · De paso</td>
+            <td>2 noches</td>
+            <td>3 noches</td>
+            <td>Parada viernes Sighișoara</td>
+            <td>●●●●○</td>
+            <td>●●●●○</td>
+            <td>●●●●○</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- COCHE DE ALQUILER -->
+  <section class="section">
+    <div class="section-head">
+      <span class="label">🚗 Movilidad</span>
+      <h2>¿Cuándo pillamos coche?</h2>
+      <p>Para moveros entre ciudades y llegar a los castillos hará falta alquilar furgonetas o coches de grupo. Esto es lo mínimo según la opción que salga votada:</p>
+    </div>
+    <div class="car-box">
+      <div class="car-row"><span class="who">Fijo para todas las opciones — Viernes 4 (traslado) + Sábado 5 (ruta de castillos)</span><span class="days">2 días</span></div>
+      <div class="car-row"><span class="who">Opción B · Fiebre de montaña (bajada de los Cárpatos)</span><span class="days">+1 día → 3 días</span></div>
+      <div class="car-row"><span class="who">Opción C · Ruta 3 paradas (parada intermedia en Sighișoara)</span><span class="days">+1 día → 3 días</span></div>
+      <div class="car-row"><span class="who">Opción D · Sighișoara de paso (mismo alojamiento fijo)</span><span class="days">2 días</span></div>
+    </div>
+    <div class="car-foot">Con 15 personas iremos en 2-3 coches/furgonetas repartiendo conductores. En cuanto se cierre la opción, se organiza quién conduce (y quién promete no tocar la radio).</div>
+  </section>
+
+  <!-- CRONOGRAMA -->
+  <section class="section">
+    <div class="section-head">
+      <span class="label">🕰️ Hoja de ruta</span>
+      <h2>El plan, día a día</h2>
+      <p>Los días de Cluj y el regreso son fijos para todo el grupo. Los 3 días centrales cambian según lo que votéis.</p>
+    </div>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-dot">🛫</div>
+        <div class="t-body">
+          <div class="t-day">MIÉ 2 DIC</div>
+          <div class="t-title">Despegue</div>
+          <div class="t-desc">Vuelo MAD → CLJ, 20:55h. Aterrizaje de noche, check-in exprés y <em>primera caña de bienvenida</em> obligatoria.</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">🏙️</div>
+        <div class="t-body">
+          <div class="t-day">JUE 3 DIC</div>
+          <div class="t-title">Cluj-Napoca</div>
+          <div class="t-desc">Casco histórico, mercadillo navideño y <em>tardeo</em> por la ciudad con más ambiente universitario de Rumanía.</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">🚐</div>
+        <div class="t-body">
+          <div class="t-day">VIE 4 DIC</div>
+          <div class="t-title">Ruta hacia Sibiu</div>
+          <div class="t-desc">El día que cambia según la opción votada: <em>casa rural en los Cárpatos</em> (B), <em>parada en Sighișoara</em> (C o D) o directos a Sibiu (A).</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">🏰</div>
+        <div class="t-body">
+          <div class="t-day">SÁB 5 DIC</div>
+          <div class="t-title">Sibiu y castillos</div>
+          <div class="t-desc">Castillos de peli para quien no los haya pisado ya (Bran / Peleș) — para los que repetís, plan libre por Sibiu. El mercadillo más bonito del país y <em>la fiesta grande del grupo</em> por la noche.</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">🚐</div>
+        <div class="t-body">
+          <div class="t-day">DOM 6 DIC</div>
+          <div class="t-title">Vuelta a Cluj</div>
+          <div class="t-desc">Día de tránsito: recogemos macutos en Sibiu y volvemos a Cluj para tener el vuelo del lunes a tiro. De camino, <em>parada en un mercadillo</em> (o segunda vuelta por el de Cluj) y cena de despedida — aquí nadie se queda sin plan.</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">✈️</div>
+        <div class="t-body">
+          <div class="t-day">LUN 7 DIC</div>
+          <div class="t-title">Vuelta a casa</div>
+          <div class="t-desc">Vuelo CLJ → MAD, 17:20h. Resaca, maletas y ya pensando en el <em>próximo viaje de Verobao</em>.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="seal">🧛‍♂️</div>
+    <h2>Ahora te toca a ti, ¿nos vamos a Rumanía verdad?</h2>
+    <p>Lo primero es pillar el vuelo. Ya pondremos por el grupo para votar la ruta (A, B, C o D) — mientras tanto, mirad si hay algo que os apetezca que no esté contemplado y lo metemos.</p>
+  </div>
+
+  <footer>VEROBAO · un grupo que cambia de nombre cada diciembre, 0 arrepentimientos</footer>
+
+</div>
+</body>
+</html>
