@@ -535,7 +535,7 @@ footer{
 .map-dot{width:11px; height:11px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); display:inline-block; border:1.5px solid rgba(255,255,255,0.7);}
 .leaflet-popup-content-wrapper{background:var(--wine-card); color:var(--cream); border-radius:12px;}
 .leaflet-popup-tip{background:var(--wine-card);}
-.leaflet-popup-content{font-family:'Poppins',sans-serif; font-size:13px; margin:12px 14px; min-width:200px;}
+.leaflet-popup-content{font-family:'Poppins',sans-serif; font-size:13px; margin:12px 14px; width:180px !important;}
 .leaflet-popup-content b{font-family:'Cinzel',serif; color:var(--gold-bright); font-size:14px;}
 .popup-dist{
   display:flex; justify-content:space-between; gap:10px;
@@ -543,12 +543,12 @@ footer{
   margin-top:6px; padding-top:6px; border-top:1px dashed rgba(227,168,87,0.25);
 }
 .popup-dist:first-of-type{border-top:1px dashed rgba(227,168,87,0.25); margin-top:8px;}
-.popup-btns{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+.popup-btns{display:flex; flex-direction:column; gap:6px; margin-top:10px;}
 .popup-btns a{
   font-family:'Space Mono',monospace; font-size:11px; font-weight:700;
   text-decoration:none; color:var(--ink); background:var(--gold-bright);
-  border-radius:999px; padding:11px 14px; white-space:nowrap;
-  display:inline-flex; align-items:center; min-height:20px;
+  border-radius:999px; padding:9px 12px; white-space:nowrap;
+  display:flex; align-items:center; justify-content:center; text-align:center;
 }
 .popup-btns a.info-btn{
   background:transparent; color:var(--gold-bright); border:1px solid var(--gold-bright);
@@ -1155,7 +1155,7 @@ footer{
   points.forEach(p => {
     L.marker([p.lat, p.lng], { icon: pinIcon(p.type) })
       .addTo(map)
-      .bindPopup(popupHTML(p));
+      .bindPopup(popupHTML(p), { maxWidth: 220 });
   });
 
   // Botón "volver arriba": solo visible tras bajar un poco
