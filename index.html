@@ -408,8 +408,50 @@ footer{
   .t-item{gap:14px;}
   .t-dot{width:46px; height:46px; font-size:18px;}
   .car-row{flex-direction:column; align-items:flex-start; gap:6px;}
+}/* ---------- MAPA ---------- */
+#trip-map{
+  height:440px; border-radius:18px; overflow:hidden;
+  border:1px solid var(--line); box-shadow:0 20px 50px rgba(0,0,0,0.35);
 }
+#trip-map .leaflet-tile-pane{
+  filter: invert(1) hue-rotate(200deg) brightness(0.85) contrast(0.9) saturate(0.6);
+}
+.map-legend{
+  display:flex; flex-wrap:wrap; gap:14px; justify-content:center;
+  margin-top:16px; font-family:'Space Mono',monospace; font-size:11.5px; color:var(--cream-dim);
+}
+.map-legend span{display:flex; align-items:center; gap:6px;}
+.map-pin{
+  width:26px; height:26px; border-radius:50% 50% 50% 0;
+  transform:rotate(-45deg); display:flex; align-items:center; justify-content:center;
+  box-shadow:0 3px 8px rgba(0,0,0,0.45); border:2px solid rgba(255,255,255,0.85);
+}
+.map-pin span{transform:rotate(45deg); font-size:12px; line-height:1;}
+.pin-ciudad{background:var(--gold-bright);}
+.pin-aeropuerto{background:#E7E4DC;}
+.pin-castillo{background:var(--blood);}
+.pin-mina{background:var(--pine);}
+.map-dot{width:11px; height:11px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); display:inline-block; border:1.5px solid rgba(255,255,255,0.7);}
+.leaflet-popup-content-wrapper{background:var(--wine-card); color:var(--cream); border-radius:12px;}
+.leaflet-popup-tip{background:var(--wine-card);}
+.leaflet-popup-content{font-family:'Poppins',sans-serif; font-size:13px; margin:12px 14px; min-width:200px;}
+.leaflet-popup-content b{font-family:'Cinzel',serif; color:var(--gold-bright); font-size:14px;}
+.popup-dist{
+  display:flex; justify-content:space-between; gap:10px;
+  font-family:'Space Mono',monospace; font-size:11px; color:var(--cream-dim);
+  margin-top:6px; padding-top:6px; border-top:1px dashed rgba(227,168,87,0.25);
+}
+.popup-dist:first-of-type{border-top:1px dashed rgba(227,168,87,0.25); margin-top:8px;}
+.popup-btns{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
+.popup-btns a{
+  font-family:'Space Mono',monospace; font-size:10.5px; font-weight:700;
+  text-decoration:none; color:var(--ink); background:var(--gold-bright);
+  border-radius:999px; padding:6px 10px; white-space:nowrap;
+}
+.leaflet-control-attribution{font-size:9px !important;}
+
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
 </head>
 <body>
 
@@ -534,6 +576,32 @@ footer{
         <div class="place-name">Cárpatos</div>
         <div class="place-desc">Montaña de verdad, nieve, casa rural con chimenea y barbacoa. La noche que se convierte en leyenda de Verobao.</div>
       </div>
+    </div>
+  </section>
+
+  <!-- MAPA -->
+  <section class="section">
+    <div class="section-head">
+      <span class="label">🗺️ Sobre el terreno</span>
+      <h2>El mapa de la ruta</h2>
+      <p>Las paradas del viaje y algún extra por si os apetece desviaros un rato. Tocad cada punto para ver qué es.</p>
+    </div>
+    <div id="trip-map"></div>
+    <div class="map-legend">
+      <span><i class="map-dot" style="background:var(--gold-bright)"></i>Ciudades</span>
+      <span><i class="map-dot" style="background:#E7E4DC"></i>Aeropuerto</span>
+      <span><i class="map-dot" style="background:var(--blood)"></i>Castillos</span>
+      <span><i class="map-dot" style="background:var(--pine)"></i>Minas de sal</span>
+    </div>
+
+    <div class="car-box" style="max-width:560px; margin:24px auto 0;">
+      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:4px; text-align:center;">🚗 Distancias clave (pensando en la ruta)</div>
+      <div class="car-row"><span class="who">Cluj → Sibiu (tronco común de todas las opciones)</span><span class="days">171 km · 2h20</span></div>
+      <div class="car-row"><span class="who">Cluj → Sighișoara</span><span class="days">159 km · 2h30</span></div>
+      <div class="car-row"><span class="who">Sibiu → Sighișoara</span><span class="days">95 km · 1h40</span></div>
+      <div class="car-row"><span class="who">Sibiu → Castillos (Bran)</span><span class="days">145 km · 2h15</span></div>
+      <div class="car-row"><span class="who">Cluj → Salina Turda</span><span class="days">30 km · 30 min</span></div>
+      <div class="car-foot" style="text-align:center;">Por eso la opción B (Cárpatos) y la C (Sighișoara con noche) piden un día más de coche: hay más kilómetros de por medio.</div>
     </div>
   </section>
 
@@ -742,6 +810,22 @@ footer{
     <div class="car-foot">Con 15 personas iremos en 2-3 coches/furgonetas repartiendo conductores. En cuanto se cierre la opción, se organiza quién conduce (y quién promete no tocar la radio).</div>
   </section>
 
+  <!-- TREN Y BUS -->
+  <section class="section">
+    <div class="section-head">
+      <span class="label">🚆 Sin coche también se puede</span>
+      <h2>Tren y bus, para quien no quiera conducir</h2>
+      <p>No hace falta que todo el grupo vaya en coche — hay buenas conexiones públicas si alguien prefiere ir por su cuenta:</p>
+    </div>
+    <div class="car-box">
+      <div class="car-row"><span class="who">🚆 Sibiu → Sighișoara (tren, CFR)</span><span class="days">~1h30-2h · desde 3€</span></div>
+      <div class="car-row"><span class="who">🚌 Sibiu → Sighișoara (bus)</span><span class="days">~1h45 · desde 3€</span></div>
+      <div class="car-row"><span class="who">🚌 Cluj → Sibiu (FlixBus)</span><span class="days">~2h25 · desde 5€</span></div>
+      <div class="car-row"><span class="who">🚌 Cluj → Sighișoara (FlixBus)</span><span class="days">~2h30 · desde 7€</span></div>
+    </div>
+    <div class="car-foot">El tren Sibiu-Sighișoara es la joya de la corona: barato, cómodo y con vistas. Para el resto, el bus va bien pero suele tardar más que el coche — valorad si os compensa por precio.</div>
+  </section>
+
   <!-- CRONOGRAMA -->
   <section class="section">
     <div class="section-head">
@@ -811,5 +895,80 @@ footer{
   <footer>VEROBAO · un grupo que cambia de nombre cada diciembre, 0 arrepentimientos</footer>
 
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+  const map = L.map('trip-map', { scrollWheelZoom: false }).setView([46.05, 24.3], 7);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    subdomains: 'abc',
+    maxZoom: 19
+  }).addTo(map);
+
+  const pinColors = { ciudad: '#F6C878', aeropuerto: '#E7E4DC', castillo: '#B93A3F', mina: '#5C7A56' };
+  const pinEmoji  = { ciudad: '🏙️', aeropuerto: '✈️', castillo: '🏰', mina: '🧂' };
+
+  function pinIcon(type){
+    return L.divIcon({
+      className: '',
+      html: `<div class="map-pin pin-${type}" style="background:${pinColors[type]}"><span>${pinEmoji[type]}</span></div>`,
+      iconSize: [26, 26],
+      iconAnchor: [13, 26],
+      popupAnchor: [0, -24]
+    });
+  }
+
+  const HUBS = {
+    cluj:  { label: "Cluj",  lat: 46.7712, lng: 23.6236 },
+    sibiu: { label: "Sibiu", lat: 45.7983, lng: 24.1256 }
+  };
+
+  function gmapsLink(hub, dest){
+    return `https://www.google.com/maps/dir/?api=1&origin=${hub.lat},${hub.lng}&destination=${dest.lat},${dest.lng}&travelmode=driving`;
+  }
+
+  const points = [
+    { name: "Cluj-Napoca", lat: 46.7712, lng: 23.6236, type: "ciudad", desc: "Punto de partida del viaje: casco histórico, mercadillo y el primer tardeo.",
+      dist: { sibiu: { km: 171, time: "2h20" } } },
+    { name: "Aeropuerto de Cluj (CLJ)", lat: 46.7852, lng: 23.6862, type: "aeropuerto", desc: "Aquí aterrizáis y despegáis.",
+      dist: { cluj: { km: 15, time: "20 min" } } },
+    { name: "Sibiu", lat: 45.7983, lng: 24.1256, type: "ciudad", desc: "El mercadillo navideño más bonito del país.",
+      dist: { cluj: { km: 171, time: "2h20" } } },
+    { name: "Sighișoara", lat: 46.2197, lng: 24.7925, type: "ciudad", desc: "Pueblo medieval UNESCO, cuna del Drácula real.",
+      dist: { cluj: { km: 159, time: "2h30" }, sibiu: { km: 95, time: "1h40" } } },
+    { name: "Alba Iulia", lat: 46.0675, lng: 23.5712, type: "ciudad", desc: "Ciudadela militar en forma de estrella, justo de camino entre Cluj y Sibiu.",
+      dist: { cluj: { km: 97, time: "1h35" }, sibiu: { km: 70, time: "1h20" } } },
+    { name: "Salina Turda", lat: 46.5877, lng: 23.7873, type: "mina", desc: "Mina de sal reconvertida en parque subterráneo, con noria y hasta pista de bolos.",
+      dist: { cluj: { km: 30, time: "30 min" }, sibiu: { km: 143, time: "1h50" } } },
+    { name: "Castillo de Bran", lat: 45.5150, lng: 25.3672, type: "castillo", desc: "El 'Castillo de Drácula' turístico. El día de castillos desde Sibiu es de los largos.",
+      dist: { sibiu: { km: 145, time: "2h15" } } },
+    { name: "Castillo de Peleș", lat: 45.3603, lng: 25.5406, type: "castillo", desc: "Palacio neorrenacentista de los reyes de Rumanía, muy cerca de Bran.",
+      dist: { sibiu: { km: 175, time: "2h50" } } },
+    { name: "Fortaleza de Râșnov", lat: 45.5906, lng: 25.4689, type: "castillo", desc: "Fortaleza campesina en lo alto de una colina, a solo 10 km de Bran.",
+      dist: { sibiu: { km: 155, time: "2h25" } } },
+    { name: "Castillo de Corvino", lat: 45.7492, lng: 22.8884, type: "castillo", desc: "Castillo gótico gigante en Hunedoara, donde se dice que estuvo preso Vlad el Empalador. Para los muy castilleros.",
+      dist: { sibiu: { km: 130, time: "2h" } } }
+  ];
+
+  function popupHTML(p){
+    let rows = '';
+    let btns = '';
+    for (const key of ['cluj', 'sibiu']) {
+      if (p.dist[key]) {
+        const hub = HUBS[key];
+        rows += `<div class="popup-dist"><span>📍 Desde ${hub.label}</span><span>${p.dist[key].km} km · ${p.dist[key].time}</span></div>`;
+        btns += `<a href="${gmapsLink(hub, p)}" target="_blank" rel="noopener">🗺️ Ruta desde ${hub.label}</a>`;
+      }
+    }
+    return `<b>${p.name}</b><br>${p.desc}${rows}<div class="popup-btns">${btns}</div>`;
+  }
+
+  points.forEach(p => {
+    L.marker([p.lat, p.lng], { icon: pinIcon(p.type) })
+      .addTo(map)
+      .bindPopup(popupHTML(p));
+  });
+</script>
 </body>
 </html>
