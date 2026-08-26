@@ -89,6 +89,16 @@ h1,h2,h3{font-family:'Cinzel', serif; letter-spacing:0.3px;}
 }
 .back-top.show{opacity:1; pointer-events:auto;}
 
+/* ---------- CREW ---------- */
+.crew-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:12px;}
+.crew-card{
+  background:var(--wine-light); border:1px solid var(--line); border-radius:12px;
+  padding:14px; text-align:center;
+}
+.crew-name{font-family:'Cinzel',serif; font-size:15px; font-weight:700; color:var(--gold-bright); margin-bottom:6px;}
+.crew-days{font-family:'Space Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; color:var(--gold); margin-bottom:8px; padding:6px 0; border-top:1px dashed var(--line); border-bottom:1px dashed var(--line);}
+.crew-route{font-family:'Poppins',sans-serif; font-size:11.5px; color:var(--cream-dim); line-height:1.4;}
+
 /* ---------- HERO ---------- */
 .hero{
   padding:60px 0 40px;
@@ -229,11 +239,17 @@ h1,h2,h3{font-family:'Cinzel', serif; letter-spacing:0.3px;}
   flex:1 1 220px;
   padding:26px 28px;
   position:relative;
-}
-.pass-seg + .pass-seg{
-  border-left:2px dashed rgba(227,168,87,0.35);
+  display:flex;
+  flex-direction:column;
 }
 .pass-seg .label{color:var(--gold); margin-bottom:10px;}
+.pass-seg-content{flex:1;}
+.pass-seg-link{
+  align-self:flex-end;
+  font-family:'Space Mono',monospace; font-size:10px; font-weight:700;
+  text-decoration:none; color:var(--ink); background:var(--gold-bright);
+  border-radius:999px; padding:7px 12px; margin-top:12px; white-space:nowrap;
+}
 .pass-route{font-family:'Cinzel',serif; font-size:22px; color:var(--cream); margin-bottom:6px; font-weight:700;}
 .pass-time{font-family:'Space Mono',monospace; font-size:26px; color:var(--gold-bright); font-weight:700;}
 .pass-date{color:var(--cream-dim); font-size:13px; margin-top:4px;}
@@ -586,9 +602,13 @@ footer{
     </svg>
 
     <div class="facts">
-      <span class="fact-chip">📅 <b>2–7 DIC 2026</b></span>
-      <span class="fact-chip">✈️ <b>MAD ↔ CLJ</b></span>
+      <span class="fact-chip">📅 <b>2–7 / 2–9 DIC 2026</b></span>
+      <span class="fact-chip">✈️ <b>MAD ↔ CLJ / OTP</b></span>
       <span class="fact-chip">👥 <b>TODO EL GRUPO</b></span>
+    </div>
+
+    <div style="max-width:600px; margin:20px auto 0; text-align:center;">
+      <p style="font-size:13.5px; color:var(--cream-dim); margin-bottom:16px;"><b>Dos opciones de viaje:</b> la estándar <b>(2–7 dic)</b> vuelves desde Cluj, o te quedas <b>2 días más en Bucarest</b> y vuelves el <b>9 dic</b>. Haz scroll para ver todos los detalles.</p>
     </div>
 
     <div class="car-box" style="max-width:520px; margin:0 auto; text-align:left;">
@@ -605,36 +625,69 @@ footer{
     <div class="section-head">
       <span class="label">🗓️ Antes de pedir el finde libre</span>
       <h2>¿Cuántos días de vacaciones hacen falta?</h2>
+      <p>Depende de si vuelves desde Cluj (7 dic) o te quedas a exprimir Bucarest (9 dic).</p>
     </div>
-    <div class="cal-wall">
-      <div class="cal-month">DICIEMBRE 2026</div>
-      <div class="cal-head">
-        <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+    
+    <div style="margin-bottom:28px;">
+      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:16px; text-align:center;">🚗 Opción estándar (vuelta 7 dic desde Cluj)</div>
+      <div class="cal-wall">
+        <div class="cal-month">DICIEMBRE 2026</div>
+        <div class="cal-head">
+          <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+        </div>
+        <div class="cal-grid">
+          <div class="cal-cell dim">30</div>
+          <div class="cal-cell dim">1</div>
+          <div class="cal-cell travel">2</div>
+          <div class="cal-cell vac">3</div>
+          <div class="cal-cell vac">4</div>
+          <div class="cal-cell weekend">5</div>
+          <div class="cal-cell weekend">6</div>
+          <div class="cal-cell fest-moved fest">7</div>
+          <div class="cal-cell dim">8</div>
+          <div class="cal-cell dim">9</div>
+          <div class="cal-cell dim">10</div>
+          <div class="cal-cell dim">11</div>
+          <div class="cal-cell dim">12</div>
+          <div class="cal-cell dim">13</div>
+        </div>
       </div>
-      <div class="cal-grid">
-        <div class="cal-cell dim">30</div>
-        <div class="cal-cell dim">1</div>
-        <div class="cal-cell travel">2</div>
-        <div class="cal-cell vac">3</div>
-        <div class="cal-cell vac">4</div>
-        <div class="cal-cell weekend">5</div>
-        <div class="cal-cell weekend">6</div>
-        <div class="cal-cell fest-moved fest">7</div>
-        <div class="cal-cell dim">8</div>
-        <div class="cal-cell dim">9</div>
-        <div class="cal-cell dim">10</div>
-        <div class="cal-cell dim">11</div>
-        <div class="cal-cell dim">12</div>
-        <div class="cal-cell dim">13</div>
-      </div>
-      <div class="cal-legend">
-        <span><i class="cal-swatch" style="background:var(--gold-bright)"></i>Vacaciones a pedir</span>
-        <span><i class="cal-swatch" style="background:rgba(92,122,86,0.6)"></i>Finde (gratis)</span>
-        <span><i class="cal-swatch" style="background:rgba(124,144,196,0.7)"></i>🎉 Festivo trasladado</span>
-        <span>✈️ Viajas, no hace falta pedirlo</span>
-      </div>
+      <p class="cal-note">Solo <b>2 días de vacaciones</b>: jueves 3 y viernes 4. El miércoles 2 curramos tranquilos (vuelo de noche, 20:55h). Sábado 5 y domingo 6 son fin de semana (gratis). Lunes 7: festivo trasladado (Día de la Constitución). Fin de semana + festivo = no hace falta pedirlo.</p>
     </div>
-    <p class="cal-note">Solo hacen falta <b>2 días de curro</b>: jueves y viernes. El miércoles curramos tranquilos, que el vuelo sale de noche (20:55h) y da tiempo a todo. El sábado y el domingo ya son gratis, y el <b>lunes 7 también</b>: la fiesta del domingo 6 (Día de la Constitución) cae en domingo, así que este año se traslada al lunes. Cuadre perfecto.</p>
+
+    <div>
+      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:16px; text-align:center;">🏙️ Opción Bucarest (vuelta 9 dic desde OTP)</div>
+      <div class="cal-wall">
+        <div class="cal-month">DICIEMBRE 2026</div>
+        <div class="cal-head">
+          <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+        </div>
+        <div class="cal-grid">
+          <div class="cal-cell dim">30</div>
+          <div class="cal-cell dim">1</div>
+          <div class="cal-cell travel">2</div>
+          <div class="cal-cell vac">3</div>
+          <div class="cal-cell vac">4</div>
+          <div class="cal-cell weekend">5</div>
+          <div class="cal-cell weekend">6</div>
+          <div class="cal-cell fest-moved fest">7</div>
+          <div class="cal-cell fest-moved fest">8</div>
+          <div class="cal-cell travel">9</div>
+          <div class="cal-cell dim">10</div>
+          <div class="cal-cell dim">11</div>
+          <div class="cal-cell dim">12</div>
+          <div class="cal-cell dim">13</div>
+        </div>
+      </div>
+      <p class="cal-note">Total <b>3 días de vacaciones</b>: jueves 3 y viernes 4. El miércoles 2 curramos (vuelo de noche). Sábado 5 y domingo 6 son fin de semana (gratis). Lunes 7 es festivo trasladado (Día de la Constitución). Y martes 8 es festivo (Inmaculada Concepción, aunque en Madrid se celebra el 9, el 8 es día libre en toda España). El miércoles 9 vuelves a casa. Así que <b>sin pedir ningún día extra</b>, tienes 5 días fuera (miércoles a domingo) + 2 días de festivos (lunes 7 y martes 8) + vuelo de vuelta el miércoles 9.</p>
+    </div>
+
+    <div class="cal-legend" style="margin-top:20px;">
+      <span><i class="cal-swatch" style="background:var(--gold-bright)"></i>Vacaciones a pedir</span>
+      <span><i class="cal-swatch" style="background:rgba(92,122,86,0.6)"></i>Finde (gratis)</span>
+      <span><i class="cal-swatch" style="background:rgba(124,144,196,0.7)"></i>🎉 Festivo trasladado</span>
+      <span>✈️ Viajas, curro hasta la tarde</span>
+    </div>
   </section>
 
   <!-- BOARDING PASS -->
@@ -645,21 +698,72 @@ footer{
     </div>
     <div class="pass">
       <div class="pass-seg">
-        <div class="label">Ida</div>
-        <div class="pass-route">MAD → CLJ</div>
-        <div class="pass-time">20:55h</div>
-        <div class="pass-date">Miércoles 2 de diciembre</div>
-        <div class="pass-price">69,99 €</div>
+        <div class="label">Ida · WizzAir</div>
+        <div class="pass-seg-content">
+          <div class="pass-route">MAD → CLJ</div>
+          <div class="pass-time">20:55h → 00:35h+1</div>
+          <div class="pass-date">Miércoles 2 de diciembre</div>
+          <div class="pass-price">69,99 €</div>
+        </div>
+        <a class="pass-seg-link" href="https://www.wizzair.com/es-es/cheap-flights-from-madrid-to-cluj-napoca" target="_blank" rel="noopener">✈️ Ver en Wizz Air</a>
       </div>
       <div class="pass-seg">
-        <div class="label">Vuelta</div>
-        <div class="pass-route">CLJ → MAD</div>
-        <div class="pass-time">17:20h</div>
-        <div class="pass-date">Lunes 7 de diciembre</div>
-        <div class="pass-price">79,99 €</div>
+        <div class="label">Vuelta · WizzAir (estándar)</div>
+        <div class="pass-seg-content">
+          <div class="pass-route">CLJ → MAD</div>
+          <div class="pass-time">17:20h → 19:35h</div>
+          <div class="pass-date">Lunes 7 de diciembre</div>
+          <div class="pass-price">79,99 €</div>
+        </div>
+        <a class="pass-seg-link" href="https://www.wizzair.com/es-es/cheap-flights-from-cluj-napoca-to-madrid" target="_blank" rel="noopener">✈️ Ver en Wizz Air</a>
       </div>
-      <div class="pass-note">5 días de calendario, <b>3 de vacaciones de verdad</b>. El resto lo pone el curro — así que a exprimir cada minuto. Vuelos: <b>149,98 € ida y vuelta</b> por persona (a precio de hoy, que esto vuela).</div>
-      <a class="place-link" style="margin:0 0 20px 28px;" href="https://www.wizzair.com/es-es/cheap-flights-from-madrid-to-cluj-napoca" target="_blank" rel="noopener">✈️ Ver ruta MAD → CLJ en Wizz Air</a>
+      <div class="pass-seg">
+        <div class="label">Vuelta extendida · Ryanair</div>
+        <div class="pass-seg-content">
+          <div class="pass-route">OTP (Bucarest) → MAD</div>
+          <div class="pass-time">21:30h → 23:55h</div>
+          <div class="pass-date">Miércoles 9 de diciembre</div>
+          <div class="pass-price">~45-60 €</div>
+        </div>
+        <a class="pass-seg-link" href="https://www.ryanair.com/es/es/vuelos-baratos-de-bucuresti-a-madrid" target="_blank" rel="noopener">✈️ Ver en Ryanair</a>
+      </div>
+      <div class="pass-note">5 días de calendario estándar (2-7 dic), o <b>7 días si extiendes a Bucarest</b> (2-9 dic). Vuelo de ida WizzAir fijo para todo el grupo. Vuelta: lunes 7 si vuelves directo desde Cluj, o miércoles 9 desde Bucarest. Precio total ida+vuelta: <b>~150€ (Cluj) o ~115-135€ (Bucarest)</b>.</div>
+    </div>
+  </section>
+
+  <!-- GRUPO -->
+  <section class="section">
+    <div class="section-head">
+      <span class="label">👥 Quién va</span>
+      <h2>El equipo</h2>
+      <p>No todo el mundo va los mismos días — algunos se quedan a exprimir Bucarest.</p>
+    </div>
+    <div class="crew-grid">
+      <div class="crew-card">
+        <div class="crew-name">🦶 Pari</div>
+        <div class="crew-days">2-7 dic</div>
+        <div class="crew-route">MAD ✈️ CLJ ... CLJ ✈️ MAD</div>
+      </div>
+      <div class="crew-card">
+        <div class="crew-name">🚬 Vero</div>
+        <div class="crew-days">2-7 dic</div>
+        <div class="crew-route">MAD ✈️ CLJ ... CLJ ✈️ MAD</div>
+      </div>
+      <div class="crew-card">
+        <div class="crew-name">🥤 Kike</div>
+        <div class="crew-days">2-7 dic</div>
+        <div class="crew-route">MAD ✈️ CLJ ... CLJ ✈️ MAD</div>
+      </div>
+      <div class="crew-card">
+        <div class="crew-name">🍇 Terra</div>
+        <div class="crew-days">2-9 dic</div>
+        <div class="crew-route">MAD ✈️ CLJ ... OTP ✈️ MAD</div>
+      </div>
+      <div class="crew-card">
+        <div class="crew-name">💇 Alcalde</div>
+        <div class="crew-days">2-9 dic</div>
+        <div class="crew-route">MAD ✈️ CLJ ... OTP ✈️ MAD</div>
+      </div>
     </div>
   </section>
 
@@ -952,13 +1056,14 @@ footer{
     <div class="car-foot">Con 15 personas iremos en 2-3 coches/furgonetas repartiendo conductores. En cuanto se cierre la opción, se organiza quién conduce (y quién promete no tocar la radio).</div>
 
     <div class="car-box" style="margin-top:18px;">
-      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:4px; text-align:center;">🚆 Tren y bus — para los tramos directos</div>
-      <div class="car-row"><span class="who">🚆 Sibiu → Sighișoara (tren, CFR)</span><span class="days">~1h30-2h · desde 3€</span></div>
-      <div class="car-row"><span class="who">🚌 Sibiu → Sighișoara (bus)</span><span class="days">~1h45 · desde 3€</span></div>
-      <div class="car-row"><span class="who">🚌 Cluj → Sibiu (FlixBus)</span><span class="days">~2h25 · desde 5€</span></div>
-      <div class="car-row"><span class="who">🚌 Cluj → Sighișoara (FlixBus)</span><span class="days">~2h30 · desde 7€</span></div>
+      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:10px; text-align:center;">🚆 Tren y bus — para los tramos directos</div>
+      <div class="car-row"><span class="who">🚆 Sibiu ↔ Sighișoara (CFR)</span><span class="days">~1h30-2h · desde 3-4€</span></div>
+      <div class="car-row"><span class="who">🚌 Sibiu ↔ Sighișoara (bus local)</span><span class="days">~1h45 · desde 3€</span></div>
+      <div class="car-row"><span class="who">🚌 Cluj ↔ Sibiu (FlixBus, LIKEBUS, otros)</span><span class="days">~2h25 · desde 5€</span></div>
+      <div class="car-row"><span class="who">🚌 Cluj ↔ Sighișoara (FlixBus, otros)</span><span class="days">~2h30 · desde 7€</span></div>
+      <div class="car-row"><span class="who">🚌 Sibiu ↔ Bucarest (FlixBus, FANY, otros)</span><span class="days">~5-6h · desde 9-15€</span></div>
     </div>
-    <div class="car-foot">El tren Sibiu-Sighișoara es la joya de la corona: barato, cómodo y con vistas. Si a alguien le viene mejor moverse así en algún tramo de ciudad a ciudad, adelante — no todo el grupo tiene que ir siempre en coche.</div>
+    <div class="car-foot">El tren Sibiu-Sighișoara es la joya de la corona (CFR, los trenes nacionales): barato, cómodo y con vistas. Para los buses: FlixBus es lo más fácil (app + wifi), pero hay otras como LIKEBUS, FANY, Horas... todas conectan las ciudades principales. No todo el grupo tiene que ir siempre en coche — si alguien se va por libre, bien.</div>
   </section>
 
   <!-- CRONOGRAMA -->
@@ -1037,6 +1142,39 @@ footer{
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- BUCAREST EXTENSIÓN -->
+  <section class="section">
+    <div class="section-head">
+      <span class="label">📍 Extensión</span>
+      <h2>De Sibiu a Bucarest — 2 días más</h2>
+      <p>Para quien quiera exprimir unos días más después de que el grupo vuelva (8-9 dic). No hay nada planeado, pero aquí va la logística.</p>
+    </div>
+
+    <div class="car-box">
+      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:10px; text-align:center;">🚗 Cómo llegar desde Sibiu a Bucarest</div>
+      <div class="car-row"><span class="who">Sibiu → Bucarest (coche de alquiler)</span><span class="days">280 km · 5h30</span></div>
+      <div class="car-row"><span class="who">Sibiu → Bucarest (bus)</span><span class="days">~5h · desde 10-15€</span></div>
+      <div class="car-row"><span class="who">Sibiu → Bucarest (tren)</span><span class="days">~6-7h · desde 8-12€</span></div>
+      <div class="car-foot">La ruta más fácil: largarse con el coche de alquiler el domingo 8 por la mañana (o el lunes si os quedáis una noche más en Cluj). Bus y tren van bien si alguien quiere ir por libre. Hay bastante relación entre Sibiu y Bucarest — el viaje es largo pero no insufrible.</div>
+    </div>
+
+    <div class="car-box" style="margin-top:18px;">
+      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:10px; text-align:center;">🏙️ Qué hacer en Bucarest</div>
+      <div class="t-extra"><b>Zona Lipscani (casco histórico):</b> casas de colores, cafés, pubs. Es como el Cluj viejo pero más chulo. Mercadillo navideño en Piața Amzei y Piața Obor — básicamente lo que hacemos en Cluj pero más grande.</div>
+      <div class="t-extra" style="margin-top:8px;"><b>Palacio del Parlamento:</b> el edificio más grande de Europa (sí, más que Versalles). Llena todo el horizonte, impresionante por absurdo.</div>
+      <div class="t-extra" style="margin-top:8px;"><b>Museo de la Historia de Rumanía:</b> si se os antoja cultura entre cerveza y cerveza.</div>
+      <div class="t-extra" style="margin-top:8px;"><b>La escena nocturna:</b> Bucarest tiene fama de ciudad con la vida más movida de la región. Mucho pub, mucha gente joven, mucho ambiente.</div>
+    </div>
+
+    <div class="car-box" style="margin-top:18px;">
+      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:4px; text-align:center;">✈️ Vuelo de vuelta (miércoles 9)</div>
+      <div class="car-row"><span class="who">Bucarest (OTP) → Madrid (MAD)</span><span class="days">21:30h → 23:55h · Ryanair</span></div>
+      <div class="car-row"><span class="who">Precio aproximado</span><span class="days">45-60€</span></div>
+      <div class="car-foot">El vuelo sale de Bucharesti Henri Coandă (OTP), a unos 15 km del centro. Fácil de coger autobús — no hace falta alquilar coche solo para eso. Cae a última hora de la noche, así que disfrutas el miércoles sin prisa por madrugar.</div>
+    </div>
+    <a class="place-link" style="margin:0 0 20px 28px;" href="https://www.ryanair.com/es/es/vuelos-baratos-de-bucuresti-a-madrid" target="_blank" rel="noopener">✈️ Ver ruta OTP → MAD en Ryanair</a>
   </section>
 
   <!-- CTA -->
@@ -1131,7 +1269,9 @@ footer{
     { name: "Viscri", lat: 46.0545, lng: 25.0905, type: "pueblo", desc: "Pueblo sajón de postal, con casa propia del rey Carlos III de Inglaterra. Algo alejado pero muy fotogénico.",
       dist: { sibiu: { km: 121, time: "2h" } } },
     { name: "Cárpatos (Păltiniș)", lat: 45.6828, lng: 23.9836, type: "naturaleza", desc: "La zona de montaña de la opción B: estación de Păltiniș, en pleno macizo de Cindrel. Aquí caería la noche de casa rural, barbacoa y nieve.",
-      dist: { sibiu: { km: 35, time: "50 min" } } }
+      dist: { sibiu: { km: 35, time: "50 min" } } },
+    { name: "Bucarest", lat: 44.4305, lng: 26.1063, type: "ciudad", desc: "La capital de Rumanía, al sur. Tienes 2 días después de que el grupo vuelva (8-9 dic) para exprimir los mercadillos navideños, los pubs históricos y la vida nocturna.",
+      dist: { sibiu: { km: 280, time: "5h30" } } }
   ];
 
   function gsearchLink(name){
