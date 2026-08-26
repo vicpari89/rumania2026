@@ -339,6 +339,16 @@ tbody tr:hover{background:rgba(227,168,87,0.06);}
   background:rgba(0,0,0,0.22); border-radius:8px; padding:4px 10px; white-space:nowrap;
 }
 .car-foot{margin-top:16px; font-size:12.5px; color:var(--cream-dim);}
+.dist-row{padding:12px 0; border-bottom:1px dashed rgba(227,168,87,0.2);}
+.dist-row:last-child{border-bottom:none;}
+.dist-route{font-size:13px; font-weight:600; color:var(--cream); margin-bottom:8px;}
+.dist-values{display:flex; flex-wrap:wrap; gap:8px;}
+.dist-pill{
+  font-family:'Space Mono',monospace; font-size:11px; font-weight:700;
+  border-radius:999px; padding:5px 11px; white-space:nowrap;
+}
+.dist-pill.car{background:var(--gold-bright); color:var(--ink);}
+.dist-pill.pt{background:transparent; color:var(--gold-bright); border:1px solid var(--gold-bright);}
 
 /* ---------- TIMELINE ---------- */
 .timeline{display:flex; flex-direction:column; gap:0; position:relative;}
@@ -359,6 +369,25 @@ tbody tr:hover{background:rgba(227,168,87,0.06);}
 .t-title{font-family:'Cinzel',serif; font-size:17px; color:var(--cream); margin-bottom:5px; font-weight:700;}
 .t-desc{font-size:13.5px; color:var(--cream-dim); max-width:560px;}
 .t-desc em{color:var(--gold-bright); font-style:normal; font-weight:600;}
+.t-extra{
+  margin-top:8px; font-size:12.5px; color:var(--cream-dim);
+  border-left:2px dashed rgba(227,168,87,0.4); padding-left:10px; max-width:560px;
+}
+.t-extra b{color:var(--gold-bright); font-weight:700;}
+.route-strip{
+  display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:center;
+  gap:4px; margin-bottom:32px;
+}
+.rs-stop{
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  font-family:'Space Mono',monospace; font-size:9.5px; color:var(--cream-dim);
+  width:64px; text-align:center;
+}
+.rs-stop .icon{
+  width:38px; height:38px; border-radius:50%; background:var(--wine-light);
+  border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:16px;
+}
+.rs-arrow{color:var(--gold); font-size:14px; opacity:0.6; margin-top:12px;}
 
 /* ---------- CTA ---------- */
 .cta{
@@ -492,7 +521,7 @@ footer{
       <div class="car-row"><span class="who">Jueves 3 dic → Cluj (llegas un día tarde)</span><span class="days">120 €</span></div>
       <div class="car-row"><span class="who">Viernes 4 dic → Cluj (te unes el viernes)</span><span class="days">100 €</span></div>
       <div class="car-row"><span class="who">Martes 8 dic → Madrid (festivo en Madrid, no hace falta pedirlo)</span><span class="days">115 €</span></div>
-      <div class="car-foot" style="text-align:center;">El vuelo de grupo (miércoles 2 → lunes 7) es el de referencia, pero nadie se queda fuera por moverse por libre. Avisad por el grupo y lo cuadramos. Ojo: el martes 8 es festivo (Inmaculada) en Madrid, así que esa opción sale gratis de vacaciones.</div>
+      <div class="car-foot" style="text-align:center;">El vuelo de grupo (miércoles 2 → lunes 7) es el de referencia, pero nadie se queda fuera por moverse por libre. Avisamos por el grupo y lo cuadramos. Ojo: el martes 8 es festivo (Inmaculada) en Madrid, así que esa opción sale gratis de vacaciones.</div>
     </div>
   </section>
 
@@ -530,7 +559,7 @@ footer{
         <span>✈️ Viajas, no hace falta pedirlo</span>
       </div>
     </div>
-    <p class="cal-note">Solo hacen falta <b>2 días de curro</b>: jueves y viernes. El miércoles currad tranquilos, que el vuelo sale de noche (20:55h) y da tiempo a todo. El sábado y el domingo ya son gratis, y el <b>lunes 7 también</b>: la fiesta del domingo 6 (Día de la Constitución) cae en domingo, así que este año se traslada al lunes. Cuadre perfecto.</p>
+    <p class="cal-note">Solo hacen falta <b>2 días de curro</b>: jueves y viernes. El miércoles curramos tranquilos, que el vuelo sale de noche (20:55h) y da tiempo a todo. El sábado y el domingo ya son gratis, y el <b>lunes 7 también</b>: la fiesta del domingo 6 (Día de la Constitución) cae en domingo, así que este año se traslada al lunes. Cuadre perfecto.</p>
   </section>
 
   <!-- BOARDING PASS -->
@@ -563,7 +592,7 @@ footer{
     <div class="section-head">
       <span class="label">🎨 Postales</span>
       <h2>¿Qué nos vamos a encontrar?</h2>
-      <p>Para que os hagáis a la idea antes de votar: esto es lo que hay en cada parada.</p>
+      <p>Para que nos hagamos a la idea antes de votar: esto es lo que hay en cada parada.</p>
     </div>
     <div class="grid-places">
       <div class="place-card">
@@ -598,7 +627,7 @@ footer{
     <div class="section-head">
       <span class="label">🗺️ Sobre el terreno</span>
       <h2>El mapa de la ruta</h2>
-      <p>Las paradas del viaje y algún extra por si os apetece desviaros un rato. Tocad cada punto para ver qué es.</p>
+      <p>Las paradas del viaje y algún extra por si nos apetece desviarnos un rato. Tocad cada punto para ver qué es.</p>
     </div>
     <div id="trip-map"></div>
     <div class="map-legend">
@@ -610,13 +639,28 @@ footer{
     </div>
 
     <div class="car-box" style="max-width:560px; margin:24px auto 0;">
-      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:4px; text-align:center;">🚗 Distancias clave (pensando en la ruta)</div>
-      <div class="car-row"><span class="who">Cluj → Sibiu (tronco común de todas las opciones)</span><span class="days">171 km · 2h20</span></div>
-      <div class="car-row"><span class="who">Cluj → Sighișoara</span><span class="days">159 km · 2h30</span></div>
-      <div class="car-row"><span class="who">Sibiu → Sighișoara</span><span class="days">95 km · 1h40</span></div>
-      <div class="car-row"><span class="who">Sibiu → Castillos (Bran)</span><span class="days">145 km · 2h15</span></div>
-      <div class="car-row"><span class="who">Cluj → Salina Turda</span><span class="days">30 km · 30 min</span></div>
-      <div class="car-foot" style="text-align:center;">Por eso la opción B (Cárpatos) y la C (Sighișoara con noche) piden un día más de coche: hay más kilómetros de por medio.</div>
+      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:6px; text-align:center;">🚗 Distancias clave (pensando en la ruta)</div>
+      <div class="dist-row">
+        <div class="dist-route">Cluj → Sibiu</div>
+        <div class="dist-values"><span class="dist-pill car">🚗 2h20</span><span class="dist-pill pt">🚌 ~2h25</span></div>
+      </div>
+      <div class="dist-row">
+        <div class="dist-route">Cluj → Sighișoara</div>
+        <div class="dist-values"><span class="dist-pill car">🚗 2h30</span><span class="dist-pill pt">🚌 ~2h30-2h50</span></div>
+      </div>
+      <div class="dist-row">
+        <div class="dist-route">Sibiu → Sighișoara</div>
+        <div class="dist-values"><span class="dist-pill car">🚗 1h40</span><span class="dist-pill pt">🚆 ~1h30-2h</span></div>
+      </div>
+      <div class="dist-row">
+        <div class="dist-route">Sibiu → Castillos (Bran)</div>
+        <div class="dist-values"><span class="dist-pill car">🚗 2h15</span><span class="dist-pill pt">🚌 ~4h+ (transbordos)</span></div>
+      </div>
+      <div class="dist-row">
+        <div class="dist-route">Cluj → Salina Turda</div>
+        <div class="dist-values"><span class="dist-pill car">🚗 30 min</span><span class="dist-pill pt">🚌 ~1h</span></div>
+      </div>
+      <div class="car-foot" style="text-align:center;">Por eso la opción B (Cárpatos) y la C (Sighișoara con noche) piden un día más de coche: hay más kilómetros de por medio. Para Cluj-Sibiu y Sibiu-Sighișoara, el tren o el bus son una alternativa real; para los castillos, mejor ir en coche.</div>
     </div>
   </section>
 
@@ -625,7 +669,7 @@ footer{
     <div class="section-head">
       <span class="label">🗺️ A votación</span>
       <h2>4 caminos, 1 solo grupo</h2>
-      <p>Todas las opciones llevan mercadillos, castillos y cañas de serie. Lo que cambia es la ruta, cuántas veces hacéis la maleta y el nivel de bureo.</p>
+      <p>Todas las opciones llevan mercadillos, castillos y cañas de serie. Lo que cambia es la ruta, cuántas veces hacemos la maleta y el nivel de bureo.</p>
     </div>
 
     <div class="grid-options">
@@ -809,36 +853,30 @@ footer{
     </div>
   </section>
 
-  <!-- COCHE DE ALQUILER -->
+  <!-- TRANSPORTE -->
   <section class="section">
     <div class="section-head">
-      <span class="label">🚗 Movilidad</span>
-      <h2>¿Cuándo pillamos coche?</h2>
-      <p>Para moveros entre ciudades y llegar a los castillos hará falta alquilar furgonetas o coches de grupo. Esto es lo mínimo según la opción que salga votada:</p>
+      <span class="label">🚗🚆 Transporte</span>
+      <h2>Cómo nos movemos</h2>
+      <p>Para los castillos y las paradas rurales hará falta coche sí o sí, pero para los tramos directos de ciudad a ciudad hay alternativa — tren y bus también son buena opción, y le quitan un coche al grupo.</p>
     </div>
     <div class="car-box">
+      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:4px; text-align:center;">🚗 Coche de alquiler — días mínimos según la opción</div>
       <div class="car-row"><span class="who">Fijo para todas las opciones — Viernes 4 (traslado) + Sábado 5 (ruta de castillos)</span><span class="days">2 días</span></div>
       <div class="car-row"><span class="who">Opción B · Fiebre de montaña (bajada de los Cárpatos)</span><span class="days">+1 día → 3 días</span></div>
       <div class="car-row"><span class="who">Opción C · Ruta 3 paradas (parada intermedia en Sighișoara)</span><span class="days">+1 día → 3 días</span></div>
       <div class="car-row"><span class="who">Opción D · Sighișoara de paso (mismo alojamiento fijo)</span><span class="days">2 días</span></div>
     </div>
     <div class="car-foot">Con 15 personas iremos en 2-3 coches/furgonetas repartiendo conductores. En cuanto se cierre la opción, se organiza quién conduce (y quién promete no tocar la radio).</div>
-  </section>
 
-  <!-- TREN Y BUS -->
-  <section class="section">
-    <div class="section-head">
-      <span class="label">🚆 Sin coche también se puede</span>
-      <h2>Tren y bus, para quien no quiera conducir</h2>
-      <p>No hace falta que todo el grupo vaya en coche — hay buenas conexiones públicas si alguien prefiere ir por su cuenta:</p>
-    </div>
-    <div class="car-box">
+    <div class="car-box" style="margin-top:18px;">
+      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:4px; text-align:center;">🚆 Tren y bus — para los tramos directos</div>
       <div class="car-row"><span class="who">🚆 Sibiu → Sighișoara (tren, CFR)</span><span class="days">~1h30-2h · desde 3€</span></div>
       <div class="car-row"><span class="who">🚌 Sibiu → Sighișoara (bus)</span><span class="days">~1h45 · desde 3€</span></div>
       <div class="car-row"><span class="who">🚌 Cluj → Sibiu (FlixBus)</span><span class="days">~2h25 · desde 5€</span></div>
       <div class="car-row"><span class="who">🚌 Cluj → Sighișoara (FlixBus)</span><span class="days">~2h30 · desde 7€</span></div>
     </div>
-    <div class="car-foot">El tren Sibiu-Sighișoara es la joya de la corona: barato, cómodo y con vistas. Para el resto, el bus va bien pero suele tardar más que el coche — valorad si os compensa por precio.</div>
+    <div class="car-foot">El tren Sibiu-Sighișoara es la joya de la corona: barato, cómodo y con vistas. Si a alguien le viene mejor moverse así en algún tramo de ciudad a ciudad, adelante — no todo el grupo tiene que ir siempre en coche.</div>
   </section>
 
   <!-- CRONOGRAMA -->
@@ -846,8 +884,23 @@ footer{
     <div class="section-head">
       <span class="label">🕰️ Hoja de ruta</span>
       <h2>El plan, día a día</h2>
-      <p>Los días de Cluj y el regreso son fijos para todo el grupo. Los 3 días centrales cambian según lo que votéis.</p>
+      <p>Los días de Cluj y el regreso son fijos para todo el grupo. Los 3 días centrales cambian según lo que votemos. Lo marcado como "opcional" no es plan cerrado — son ideas de la zona por si a alguien le apetece desviarse un rato.</p>
     </div>
+
+    <div class="route-strip">
+      <div class="rs-stop"><div class="icon">✈️</div>MIÉ · LLEGADA</div>
+      <div class="rs-arrow">→</div>
+      <div class="rs-stop"><div class="icon">🏙️</div>JUE · CLUJ</div>
+      <div class="rs-arrow">→</div>
+      <div class="rs-stop"><div class="icon">🚐</div>VIE · RUTA</div>
+      <div class="rs-arrow">→</div>
+      <div class="rs-stop"><div class="icon">🏰</div>SÁB · SIBIU</div>
+      <div class="rs-arrow">→</div>
+      <div class="rs-stop"><div class="icon">🚐</div>DOM · VUELTA</div>
+      <div class="rs-arrow">→</div>
+      <div class="rs-stop"><div class="icon">✈️</div>LUN · CASA</div>
+    </div>
+
     <div class="timeline">
       <div class="t-item">
         <div class="t-dot">🛫</div>
@@ -863,6 +916,7 @@ footer{
           <div class="t-day">JUE 3 DIC</div>
           <div class="t-title">Cluj-Napoca</div>
           <div class="t-desc">Casco histórico, mercadillo navideño y <em>tardeo</em> por la ciudad con más ambiente universitario de Rumanía.</div>
+          <div class="t-extra"><b>Opcional, si alguien quiere estirar la mañana:</b> 🧂 Salina Turda (mina de sal reconvertida en parque, 30 min) y el cañón de 🌲 Cheile Turzii, casi pegados el uno al otro.</div>
         </div>
       </div>
       <div class="t-item">
@@ -871,6 +925,7 @@ footer{
           <div class="t-day">VIE 4 DIC</div>
           <div class="t-title">Ruta hacia Sibiu</div>
           <div class="t-desc">El día que cambia según la opción votada: <em>casa rural en los Cárpatos</em> (B), <em>parada en Sighișoara</em> (C o D) o directos a Sibiu (A).</div>
+          <div class="t-extra"><b>Opcional según la ruta:</b> si vamos por la general, 🏯 Alba Iulia (ciudadela en forma de estrella) pilla de camino, casi a medio camino entre Cluj y Sibiu. Si sale la opción B, la parada de montaña sería en ⛰️ Păltiniș.</div>
         </div>
       </div>
       <div class="t-item">
@@ -878,7 +933,8 @@ footer{
         <div class="t-body">
           <div class="t-day">SÁB 5 DIC</div>
           <div class="t-title">Sibiu y castillos</div>
-          <div class="t-desc">Castillos de peli para quien no los haya pisado ya (Bran / Peleș) — para los que repetís, plan libre por Sibiu. El mercadillo más bonito del país y <em>la fiesta grande del grupo</em> por la noche.</div>
+          <div class="t-desc">Castillos de peli para quien no los haya pisado ya (Bran / Peleș) — para los que repetimos, plan libre por Sibiu. El mercadillo más bonito del país y <em>la fiesta grande del grupo</em> por la noche.</div>
+          <div class="t-extra"><b>Opcional, para quien no se conforme con dos castillos:</b> 🏰 Râșnov está a solo 10 km de Bran. Y para quien prefiera cambiar de aires (o repite), el 🏰 Castillo de Corvino en Hunedoara es más lejos pero impresionante — ahí dicen que estuvo preso Vlad el Empalador.</div>
         </div>
       </div>
       <div class="t-item">
@@ -887,6 +943,7 @@ footer{
           <div class="t-day">DOM 6 DIC</div>
           <div class="t-title">Vuelta a Cluj</div>
           <div class="t-desc">Día de tránsito: recogemos macutos en Sibiu y volvemos a Cluj para tener el vuelo del lunes a tiro. De camino, <em>parada en un mercadillo</em> (o segunda vuelta por el de Cluj) y cena de despedida — aquí nadie se queda sin plan.</div>
+          <div class="t-extra"><b>Opcional, para los muy freakies de los pueblos sajones:</b> 🏘️ Biertan y 🏘️ Viscri quedan por esta zona, aunque piden desviarse bastante — mejor si alguien ya tiene coche cogido y ganas de madrugar.</div>
         </div>
       </div>
       <div class="t-item">
@@ -904,7 +961,7 @@ footer{
   <div class="cta">
     <div class="seal">🧛‍♂️</div>
     <h2>Ahora te toca a ti, ¿nos vamos a Rumanía verdad?</h2>
-    <p>Lo primero es pillar el vuelo. Ya pondremos por el grupo para votar la ruta (A, B, C o D) — mientras tanto, mirad si hay algo que os apetezca que no esté contemplado y lo metemos.</p>
+    <p>Lo primero es pillar el vuelo. Ya pondremos por el grupo para votar la ruta (A, B, C o D) — mientras tanto, miramos si hay algo que nos apetezca que no esté contemplado y lo metemos.</p>
   </div>
 
   <footer>VEROBAO · un grupo que cambia de nombre cada diciembre, 0 arrepentimientos</footer>
@@ -946,7 +1003,7 @@ footer{
   const points = [
     { name: "Cluj-Napoca", lat: 46.7712, lng: 23.6236, type: "ciudad", desc: "Punto de partida del viaje: casco histórico, mercadillo y el primer tardeo.",
       dist: { sibiu: { km: 171, time: "2h20" } } },
-    { name: "Aeropuerto de Cluj (CLJ)", lat: 46.7852, lng: 23.6862, type: "aeropuerto", desc: "Aquí aterrizáis y despegáis.",
+    { name: "Aeropuerto de Cluj (CLJ)", lat: 46.7852, lng: 23.6862, type: "aeropuerto", desc: "Aquí aterrizamos y despegamos.",
       dist: { cluj: { km: 15, time: "20 min" } } },
     { name: "Sibiu", lat: 45.7983, lng: 24.1256, type: "ciudad", desc: "El mercadillo navideño más bonito del país.",
       dist: { cluj: { km: 171, time: "2h20" } } },
