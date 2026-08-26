@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Verobao en Transilvania — Vota tu ruta</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="🧛‍♂️ Verobao en Transilvania — Vota tu ruta">
+<meta property="og:description" content="Mercadillos navideños, castillos y piña de las buenas. 2-7 dic 2026. Aquí está todo el plan y las 4 rutas a votar (A/B/C/D).">
+<meta property="og:image" content="https://vicpari89.github.io/rumania2026/preview.jpg">
+<meta property="og:url" content="https://vicpari89.github.io/rumania2026/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="🧛‍♂️ Verobao en Transilvania — Vota tu ruta">
+<meta name="twitter:description" content="Mercadillos navideños, castillos y piña de las buenas. 2-7 dic 2026. Aquí está todo el plan y las 4 rutas a votar (A/B/C/D).">
+<meta name="twitter:image" content="https://vicpari89.github.io/rumania2026/preview.jpg">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
 
@@ -22,6 +32,9 @@
 }
 
 *{box-sizing:border-box; margin:0; padding:0;}
+
+html{scroll-behavior:smooth;}
+section[id]{scroll-margin-top:64px;}
 
 body{
   background:
@@ -44,6 +57,26 @@ h1,h2,h3{font-family:'Cinzel', serif; letter-spacing:0.3px;}
   letter-spacing:1.5px;
   font-size:11px;
 }
+
+/* ---------- NAV STICKY ---------- */
+.quicknav{
+  position:sticky; top:0; z-index:100;
+  background:rgba(23,11,16,0.92); backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+  overflow-x:auto; white-space:nowrap;
+  -webkit-overflow-scrolling:touch; scrollbar-width:none;
+}
+.quicknav::-webkit-scrollbar{display:none;}
+.quicknav-inner{
+  display:inline-flex; gap:6px; padding:10px 16px; min-width:100%;
+}
+.quicknav a{
+  flex:none; font-family:'Space Mono',monospace; font-size:11.5px; font-weight:700;
+  text-decoration:none; color:var(--cream-dim); background:var(--wine-light);
+  border:1px solid var(--line); border-radius:999px; padding:7px 14px;
+  white-space:nowrap;
+}
+.quicknav a:active, .quicknav a.active{color:var(--ink); background:var(--gold-bright); border-color:var(--gold-bright);}
 
 /* ---------- HERO ---------- */
 .hero{
@@ -494,6 +527,15 @@ footer{
 </head>
 <body>
 
+<nav class="quicknav">
+  <div class="quicknav-inner">
+    <a href="#vuelo">✈️ Vuelo</a>
+    <a href="#mapa">🗺️ Mapa</a>
+    <a href="#opciones">🗳️ Opciones</a>
+    <a href="#ruta">🕰️ Ruta</a>
+  </div>
+</nav>
+
 <div class="wrap">
 
   <!-- HERO -->
@@ -563,7 +605,7 @@ footer{
   </section>
 
   <!-- BOARDING PASS -->
-  <section class="section">
+  <section class="section" id="vuelo">
     <div class="section-head">
       <span class="label">✈️ Logística</span>
       <h2>Tu billete (ya casi comprado)</h2>
@@ -624,7 +666,7 @@ footer{
   </section>
 
   <!-- MAPA -->
-  <section class="section">
+  <section class="section" id="mapa">
     <div class="section-head">
       <span class="label">🗺️ Sobre el terreno</span>
       <h2>El mapa de la ruta</h2>
@@ -666,7 +708,7 @@ footer{
   </section>
 
   <!-- OPCIONES -->
-  <section class="section">
+  <section class="section" id="opciones">
     <div class="section-head">
       <span class="label">🗺️ A votación</span>
       <h2>4 caminos, 1 solo grupo</h2>
@@ -881,7 +923,7 @@ footer{
   </section>
 
   <!-- CRONOGRAMA -->
-  <section class="section">
+  <section class="section" id="ruta">
     <div class="section-head">
       <span class="label">🕰️ Hoja de ruta</span>
       <h2>El plan, día a día</h2>
