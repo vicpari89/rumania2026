@@ -58,25 +58,48 @@ h1,h2,h3{font-family:'Cinzel', serif; letter-spacing:0.3px;}
   font-size:11px;
 }
 
-/* ---------- NAV STICKY ---------- */
+/* ---------- NAV STICKY (hamburguesa) ---------- */
 .quicknav{
   position:sticky; top:0; z-index:100;
-  background:rgba(23,11,16,0.92); backdrop-filter:blur(6px);
+  background:rgba(23,11,16,0.94); backdrop-filter:blur(6px);
   border-bottom:1px solid var(--line);
-  overflow-x:auto; white-space:nowrap;
-  -webkit-overflow-scrolling:touch; scrollbar-width:none;
 }
-.quicknav::-webkit-scrollbar{display:none;}
-.quicknav-inner{
-  display:inline-flex; gap:6px; padding:10px 16px; min-width:100%;
+.quicknav-bar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 20px;
 }
-.quicknav a{
-  flex:none; font-family:'Space Mono',monospace; font-size:11.5px; font-weight:700;
-  text-decoration:none; color:var(--cream-dim); background:var(--wine-light);
-  border:1px solid var(--line); border-radius:999px; padding:7px 14px;
-  white-space:nowrap;
+.quicknav-brand{
+  font-family:'Cinzel',serif; font-weight:700; font-size:14px; color:var(--gold-bright);
 }
-.quicknav a:active, .quicknav a.active{color:var(--ink); background:var(--gold-bright); border-color:var(--gold-bright);}
+.quicknav-toggle{
+  background:none; border:1px solid var(--line); border-radius:8px;
+  width:38px; height:34px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px;
+  cursor:pointer;
+}
+.quicknav-toggle span{
+  display:block; width:18px; height:2px; background:var(--gold-bright);
+  transition:transform .2s ease, opacity .2s ease;
+}
+.quicknav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.quicknav-toggle.open span:nth-child(2){opacity:0;}
+.quicknav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.quicknav-menu{
+  max-height:0; overflow:hidden;
+  transition:max-height .25s ease;
+  border-top:1px solid transparent;
+}
+.quicknav-menu.open{
+  max-height:400px;
+  border-top:1px solid var(--line);
+}
+.quicknav-menu a{
+  display:flex; align-items:center; gap:10px;
+  font-family:'Space Mono',monospace; font-size:13px; font-weight:700;
+  text-decoration:none; color:var(--cream-dim);
+  padding:14px 20px; border-bottom:1px dashed rgba(227,168,87,0.15);
+}
+.quicknav-menu a:active{color:var(--gold-bright); background:var(--wine-light);}
+.quicknav-menu a:last-child{border-bottom:none;}
 
 .back-top{
   position:fixed; bottom:20px; right:16px; z-index:90;
@@ -577,11 +600,19 @@ footer{
 <body id="top">
 
 <nav class="quicknav">
-  <div class="quicknav-inner">
+  <div class="quicknav-bar">
+    <span class="quicknav-brand">🧛‍♂️ Verobao</span>
+    <button class="quicknav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="quicknav-menu" id="navMenu">
     <a href="#vuelo">✈️ Vuelo</a>
+    <a href="#postales">🎨 Sitios</a>
     <a href="#mapa">🗺️ Mapa</a>
     <a href="#opciones">🗳️ Opciones</a>
     <a href="#ruta">🕰️ Ruta</a>
+    <a href="#bucarest">🏛️ Bucarest</a>
   </div>
 </nav>
 
@@ -727,7 +758,7 @@ footer{
         </div>
         <a class="pass-seg-link" href="https://www.ryanair.com/es/es/vuelos-baratos-de-bucuresti-a-madrid" target="_blank" rel="noopener">✈️ Ver en Ryanair</a>
       </div>
-      <div class="pass-note">5 días de calendario estándar (2-7 dic), o <b>7 días si extiendes a Bucarest</b> (2-9 dic). Vuelo de ida WizzAir fijo para todo el grupo. Vuelta: lunes 7 si vuelves directo desde Cluj, o miércoles 9 desde Bucarest. Precio total ida+vuelta: <b>~150€ (Cluj) o ~115-135€ (Bucarest)</b>.</div>
+      <div class="pass-note"><b>5 noches</b> en la opción estándar (2-7 dic), o <b>7 noches</b> si extiendes a Bucarest (2-9 dic). Vuelo de ida WizzAir fijo para todo el grupo. Vuelta: lunes 7 si vuelves directo desde Cluj, o miércoles 9 desde Bucarest. Precio total ida+vuelta: <b>~150€ (Cluj) o ~115-135€ (Bucarest)</b>.</div>
     </div>
   </section>
 
@@ -768,7 +799,7 @@ footer{
   </section>
 
   <!-- CIUDADES -->
-  <section class="section">
+  <section class="section" id="postales">
     <div class="section-head">
       <span class="label">🎨 Postales</span>
       <h2>¿Qué nos vamos a encontrar?</h2>
@@ -798,6 +829,12 @@ footer{
         <div class="place-name">Cárpatos</div>
         <div class="place-desc">Montaña de verdad, nieve, casa rural con chimenea y barbacoa. La noche que se convierte en leyenda de Verobao.</div>
         <a class="place-link" href="https://www.google.com/search?q=P%C4%83ltini%C8%99+C%C3%A1rpatos+Ruman%C3%ADa&hl=es&gl=es" target="_blank" rel="noopener">🔎 Más info</a>
+      </div>
+      <div class="place-card">
+        <div class="place-icon">🏛️</div>
+        <div class="place-name">Bucarest</div>
+        <div class="place-desc">Para quien extienda hasta el 9 dic: la capital, con su casco histórico de Lipscani, el edificio más grande de Europa y la vida nocturna más movida de la región.</div>
+        <a class="place-link" href="https://www.google.com/search?q=Bucarest+Ruman%C3%ADa&hl=es&gl=es" target="_blank" rel="noopener">🔎 Más info</a>
       </div>
     </div>
   </section>
@@ -1145,7 +1182,7 @@ footer{
   </section>
 
   <!-- BUCAREST EXTENSIÓN -->
-  <section class="section">
+  <section class="section" id="bucarest">
     <div class="section-head">
       <span class="label">📍 Extensión</span>
       <h2>De Sibiu a Bucarest — 2 días más</h2>
@@ -1181,7 +1218,7 @@ footer{
   <div class="cta">
     <div class="seal">🧛‍♂️</div>
     <h2>Ahora te toca a ti, ¿nos vamos a Rumanía verdad?</h2>
-    <p>Lo primero es pillar el vuelo. Ya pondremos por el grupo para votar la ruta (A, B, C o D) — mientras tanto, miramos si hay algo que nos apetezca que no esté contemplado y lo metemos.</p>
+    <p>Algunos ya han pillado el vuelo — si no lo has hecho, es lo primero. Después, échale un ojo a las rutas (A, B, C o D) y a los sitios del mapa que te llamen la atención, que ya votaremos por el grupo. Si ves algo que te apetezca y no está contemplado, lo metemos.</p>
   </div>
 
   <footer>VEROBAO · un grupo que cambia de nombre cada diciembre, 0 arrepentimientos</footer>
@@ -1303,6 +1340,22 @@ footer{
   window.addEventListener('scroll', () => {
     backTop.classList.toggle('show', window.scrollY > 500);
   }, { passive: true });
+
+  // Menú hamburguesa: abrir/cerrar y cerrar solo al tocar un enlace
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navMenu.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
 </script>
 </body>
 </html>
