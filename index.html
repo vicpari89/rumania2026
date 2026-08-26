@@ -78,6 +78,17 @@ h1,h2,h3{font-family:'Cinzel', serif; letter-spacing:0.3px;}
 }
 .quicknav a:active, .quicknav a.active{color:var(--ink); background:var(--gold-bright); border-color:var(--gold-bright);}
 
+.back-top{
+  position:fixed; bottom:20px; right:16px; z-index:90;
+  width:44px; height:44px; border-radius:50%;
+  background:var(--gold-bright); color:var(--ink);
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; text-decoration:none;
+  box-shadow:0 8px 20px rgba(0,0,0,0.4);
+  opacity:0; pointer-events:none; transition:opacity .2s ease;
+}
+.back-top.show{opacity:1; pointer-events:auto;}
+
 /* ---------- HERO ---------- */
 .hero{
   padding:60px 0 40px;
@@ -340,7 +351,20 @@ h1,h2,h3{font-family:'Cinzel', serif; letter-spacing:0.3px;}
 .pina-note b{color:var(--gold-bright);}
 
 /* ---------- TABLE ---------- */
-.table-scroll{overflow-x:auto; border-radius:14px; border:1px solid var(--line);}
+.table-scroll{overflow-x:auto; border-radius:14px; border:1px solid var(--line); position:relative;}
+.table-scroll-wrap{position:relative;}
+.table-scroll-wrap::after{
+  content:""; position:absolute; top:0; right:0; bottom:0; width:28px;
+  background:linear-gradient(to right, transparent, rgba(23,11,16,0.85));
+  pointer-events:none; border-radius:0 14px 14px 0;
+}
+.table-hint{
+  display:none; text-align:center; font-family:'Space Mono',monospace; font-size:11px;
+  color:var(--cream-dim); margin-top:8px;
+}
+@media (max-width:640px){
+  .table-hint{display:block;}
+}
 table{width:100%; border-collapse:collapse; min-width:680px; background:var(--wine);}
 thead th{
   font-family:'Space Mono',monospace; text-transform:uppercase; font-size:11px;
@@ -483,6 +507,14 @@ footer{
 #trip-map .leaflet-tile-pane{
   filter: invert(1) hue-rotate(200deg) brightness(0.85) contrast(0.9) saturate(0.6);
 }
+.map-tap-overlay{
+  position:absolute; inset:0; z-index:400; display:none;
+  align-items:center; justify-content:center;
+  background:rgba(23,11,16,0.45); color:var(--cream);
+  font-family:'Space Mono',monospace; font-size:13px; font-weight:700;
+  border-radius:18px; cursor:pointer;
+}
+.map-tap-overlay.show{display:flex;}
 .map-legend{
   display:flex; flex-wrap:wrap; gap:14px; justify-content:center;
   margin-top:16px; font-family:'Space Mono',monospace; font-size:11.5px; color:var(--cream-dim);
@@ -511,11 +543,12 @@ footer{
   margin-top:6px; padding-top:6px; border-top:1px dashed rgba(227,168,87,0.25);
 }
 .popup-dist:first-of-type{border-top:1px dashed rgba(227,168,87,0.25); margin-top:8px;}
-.popup-btns{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
+.popup-btns{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
 .popup-btns a{
-  font-family:'Space Mono',monospace; font-size:10.5px; font-weight:700;
+  font-family:'Space Mono',monospace; font-size:11px; font-weight:700;
   text-decoration:none; color:var(--ink); background:var(--gold-bright);
-  border-radius:999px; padding:6px 10px; white-space:nowrap;
+  border-radius:999px; padding:11px 14px; white-space:nowrap;
+  display:inline-flex; align-items:center; min-height:20px;
 }
 .popup-btns a.info-btn{
   background:transparent; color:var(--gold-bright); border:1px solid var(--gold-bright);
@@ -525,7 +558,7 @@ footer{
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
 </head>
-<body>
+<body id="top">
 
 <nav class="quicknav">
   <div class="quicknav-inner">
@@ -672,7 +705,10 @@ footer{
       <h2>El mapa de la ruta</h2>
       <p>Las paradas del viaje y algún extra por si nos apetece desviarnos un rato. Tocad cada punto para ver qué es.</p>
     </div>
-    <div id="trip-map"></div>
+    <div style="position:relative;">
+      <div id="trip-map"></div>
+      <div id="map-tap-overlay" class="map-tap-overlay">👆 Toca para mover el mapa</div>
+    </div>
     <div class="map-legend">
       <span><i class="map-dot" style="background:var(--gold-bright)"></i>Ciudades</span>
       <span><i class="map-dot" style="background:#E7E4DC"></i>Aeropuerto</span>
@@ -841,6 +877,7 @@ footer{
       <span class="label">📊 Resumen</span>
       <h2>Todo de un vistazo</h2>
     </div>
+    <div class="table-scroll-wrap">
     <div class="table-scroll">
       <table>
         <thead>
@@ -894,6 +931,8 @@ footer{
         </tbody>
       </table>
     </div>
+    </div>
+    <div class="table-hint">👉 Desliza para ver todas las columnas</div>
   </section>
 
   <!-- TRANSPORTE -->
@@ -1009,6 +1048,8 @@ footer{
 
   <footer>VEROBAO · un grupo que cambia de nombre cada diciembre, 0 arrepentimientos</footer>
 
+  <a href="#top" class="back-top" id="backTop" aria-label="Volver arriba">↑</a>
+
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
@@ -1016,6 +1057,23 @@ footer{
         async src="//gc.zgo.at/count.js"></script>
 <script>
   const map = L.map('trip-map', { scrollWheelZoom: false }).setView([46.05, 24.3], 7);
+
+  // En táctil, el mapa arranca sin arrastre/zoom hasta que el usuario lo activa a propósito,
+  // para que deslizar el dedo sobre él siga haciendo scroll de la página.
+  const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  const tapOverlay = document.getElementById('map-tap-overlay');
+  if (isTouch) {
+    map.dragging.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    tapOverlay.classList.add('show');
+    tapOverlay.addEventListener('click', () => {
+      map.dragging.enable();
+      map.touchZoom.enable();
+      map.doubleClickZoom.enable();
+      tapOverlay.classList.remove('show');
+    }, { once: true });
+  }
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -1099,6 +1157,12 @@ footer{
       .addTo(map)
       .bindPopup(popupHTML(p));
   });
+
+  // Botón "volver arriba": solo visible tras bajar un poco
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('show', window.scrollY > 500);
+  }, { passive: true });
 </script>
 </body>
 </html>
