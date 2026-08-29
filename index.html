@@ -109,13 +109,25 @@ h1,h2,h3{font-family:'Cinzel', serif; letter-spacing:0.3px;}
   display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:8px;
 }
 .opt-summary .tag{font-size:11px;}
-.opt-badge-row{display:flex; align-items:center; gap:12px; justify-content:center; margin-bottom:14px;}
+.opt-badge-row{
+  display:flex; align-items:center; gap:12px; margin-bottom:14px;
+  position:sticky; top:58px; z-index:60;
+  background:var(--wine-card); padding:10px 14px; border-radius:12px;
+  box-shadow:0 6px 16px rgba(0,0,0,0.35); border:1px solid var(--line);
+  border-left:4px solid var(--gold-bright);
+}
+.opt-badge-row.row-1{border-left-color:#7C90C4;}
+.opt-badge-row.row-2{border-left-color:#E3A857;}
+.opt-badge-row.row-3{border-left-color:#8CA684;}
 .opt-badge-lg{
-  width:40px; height:40px; border-radius:50%; background:var(--gold-bright); color:var(--ink);
-  font-family:'Cinzel',serif; font-weight:900; font-size:18px;
+  width:32px; height:32px; border-radius:50%; background:var(--gold-bright); color:var(--ink);
+  font-family:'Cinzel',serif; font-weight:900; font-size:15px;
   display:flex; align-items:center; justify-content:center; flex:none;
 }
-.opt-title-lg{font-family:'Cinzel',serif; font-weight:700; font-size:17px; color:var(--gold-bright);}
+.opt-title-lg{
+  font-family:'Cinzel',serif; font-weight:700; font-size:15px; color:var(--gold-bright);
+  flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
 .sigh-flag{
   display:inline-flex; align-items:center; gap:6px; font-family:'Space Mono',monospace; font-size:11px; font-weight:700;
   padding:6px 12px; border-radius:999px; margin:0 auto 18px; width:fit-content;
@@ -1134,7 +1146,7 @@ footer{
 
     <!-- PANEL OPCIÓN 1 -->
     <div class="opt-panel active" id="opt-panel-1">
-      <div class="opt-badge-row">
+      <div class="opt-badge-row row-1">
         <div class="opt-badge-lg">1</div>
         <div class="opt-title-lg">Rumbo a Sighișoara primero + campamento base en Sibiu</div>
       </div>
@@ -1183,7 +1195,7 @@ footer{
 
     <!-- PANEL OPCIÓN 2 -->
     <div class="opt-panel" id="opt-panel-2">
-      <div class="opt-badge-row">
+      <div class="opt-badge-row row-2">
         <div class="opt-badge-lg">2</div>
         <div class="opt-title-lg">Rumbo a Sibiu primero + excursión de un día a Sighișoara</div>
       </div>
@@ -1232,7 +1244,7 @@ footer{
 
     <!-- PANEL OPCIÓN 3 -->
     <div class="opt-panel" id="opt-panel-3">
-      <div class="opt-badge-row">
+      <div class="opt-badge-row row-3">
         <div class="opt-badge-lg">3</div>
         <div class="opt-title-lg">Experiencia de alta montaña, sin Sighișoara (Cárpatos y teleférico)</div>
       </div>
