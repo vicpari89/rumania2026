@@ -894,6 +894,9 @@ footer{
       <h2>El equipo</h2>
       <p>No todo el mundo va los mismos días — algunos se quedan a exprimir Bucarest.</p>
     </div>
+    <details class="accordion" open>
+      <summary class="accordion-summary">Ver quién va y cuándo <span class="chev">▾</span></summary>
+      <div class="accordion-inner">
     <div class="crew-grid">
       <div class="crew-card">
         <div class="crew-name">🦶 Pari</div>
@@ -956,6 +959,8 @@ footer{
         <div class="crew-route">BCN ✈️ CLJ ... OTP ✈️ BCN</div>
       </div>
     </div>
+      </div>
+    </details>
   </section>
 
   <!-- CIUDADES -->
@@ -1043,6 +1048,32 @@ footer{
     </div>
   </section>
 
+  <!-- DÍAS FIJOS -->
+  <div style="max-width:640px; margin:0 auto 40px;">
+    <div style="text-align:center; font-family:'Space Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--gold); margin-bottom:12px;">Fijo para todo el grupo</div>
+    <div class="timeline" style="margin-bottom:8px;">
+      <div class="t-item">
+        <div class="t-dot">✈️</div>
+        <div class="t-body">
+          <div class="t-day">MIÉ 2 DIC</div>
+          <div class="t-title">Solo volamos</div>
+          <div class="t-desc">Vuelo MAD → CLJ, 20:55h. Aterrizaje de noche, check-in exprés y primera caña de bienvenida.</div>
+          <div class="t-extra"><b>🛏️ Duerme en:</b> Cluj</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">🏙️</div>
+        <div class="t-body">
+          <div class="t-day">JUE 3 DIC</div>
+          <div class="t-title">Cluj-Napoca</div>
+          <div class="t-desc">Casco histórico, mercadillo navideño y tardeo. Igual en las 3 opciones.</div>
+          <div class="t-extra"><b>🛏️ Duerme en:</b> Cluj</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; font-size:11.5px; color:var(--cream-dim);">↓ El viernes es donde se bifurcan las 3 opciones ↓</div>
+  </div>
+
   <!-- OPCIONES -->
   <section class="section" id="opciones">
     <div class="section-head">
@@ -1121,28 +1152,6 @@ footer{
 
     <div style="text-align:center; font-family:'Space Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--gold); margin-bottom:12px;" id="detalle-anchor">Detalle día a día</div>
 
-    <div class="timeline" style="max-width:640px; margin:0 auto 8px;">
-      <div class="t-item">
-        <div class="t-dot">✈️</div>
-        <div class="t-body">
-          <div class="t-day">MIÉ 2 DIC</div>
-          <div class="t-title">Solo volamos</div>
-          <div class="t-desc">Vuelo MAD → CLJ, 20:55h. Aterrizaje de noche, check-in exprés y primera caña de bienvenida.</div>
-          <div class="t-extra"><b>🛏️ Duerme en:</b> Cluj</div>
-        </div>
-      </div>
-      <div class="t-item">
-        <div class="t-dot">🏙️</div>
-        <div class="t-body">
-          <div class="t-day">JUE 3 DIC</div>
-          <div class="t-title">Cluj-Napoca</div>
-          <div class="t-desc">Casco histórico, mercadillo navideño y tardeo. Igual en las 3 opciones.</div>
-          <div class="t-extra"><b>🛏️ Duerme en:</b> Cluj</div>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center; font-size:11.5px; color:var(--cream-dim); margin-bottom:24px;">↓ A partir de aquí, cada opción tira por su lado ↓</div>
-
     <!-- PANEL OPCIÓN 1 -->
     <div class="opt-panel active" id="opt-panel-1">
       <div class="opt-badge-row row-1">
@@ -1160,7 +1169,7 @@ footer{
             <div class="t-desc">Por la mañana, parada en Salina Turda (mina de sal reconvertida en parque subterráneo) y el cañón de Cheile Turzii, muy cerca de Cluj. Después, salida hacia Sighișoara — hay dos formas de hacer el resto del día:</div>
             <div class="t-extra"><b>Subopción Avanzadilla:</b> el grupo principal sale el viernes tarde/noche directo a Sighișoara (2h) para hacer noche allí y ver la fortaleza iluminada. <b>🛏️ Duerme en Sighișoara.</b></div>
             <div class="t-extra"><b>Subopción Salida Sábado:</b> todo el grupo pernocta el viernes en Cluj y sale el sábado por la mañana hacia Sighișoara. <b>🛏️ Duerme en Cluj.</b></div>
-            <div class="isma-note">✈️ <b>Isma y María</b> (que aterrizan a la 1:00 am) hacen noche en Cluj pase lo que pase, y suben a Sighișoara el sábado temprano para juntarse con el grupo.</div>
+            <div class="isma-note">✈️ <b>Isma y María</b> (que aterrizan a la 1:00 am) hacen noche en Cluj pase lo que pase, y suben a Sighișoara el sábado temprano para juntarse con el grupo. (O como ellos quieran)</div>
           </div>
         </div>
         <div class="t-item">
@@ -1208,7 +1217,7 @@ footer{
             <div class="t-title">Salina Turda + a Sibiu vía Alba Iulia</div>
             <div class="t-desc">Por la mañana, parada en Salina Turda (mina de sal reconvertida en parque subterráneo) y el cañón de Cheile Turzii, muy cerca de Cluj. Después, traslado hacia Sibiu, con parada cultural en la ciudadela fortificada de Alba Iulia de camino. Llegada a Sibiu para alojarse.</div>
             <div class="t-extra"><b>🛏️ Duerme en:</b> Sibiu</div>
-            <div class="isma-note">✈️ <b>Isma y María</b> van directas a Sibiu, ya que el grupo está ahí desde el viernes — se juntan con todos en cuanto aterrizan.</div>
+            <div class="isma-note">✈️ <b>Isma y María</b> (que aterrizan a la 1:00 am) hacen noche en Cluj pase lo que pase, al día siguiente se unen con nosotros en Sibiu (o como ellos quieran jeje).</div>
           </div>
         </div>
         <div class="t-item">
