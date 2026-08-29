@@ -101,6 +101,66 @@ h1,h2,h3{font-family:'Cinzel', serif; letter-spacing:0.3px;}
 .quicknav-menu a:active{color:var(--gold-bright); background:var(--wine-light);}
 .quicknav-menu a:last-child{border-bottom:none;}
 
+/* ---------- OPCIONES (comparativa clicable) ---------- */
+.opt-panel{display:none;}
+.opt-panel.active{display:block; animation:fadein .2s ease;}
+@keyframes fadein{from{opacity:0;} to{opacity:1;}}
+.opt-summary{
+  display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:8px;
+}
+.opt-summary .tag{font-size:11px;}
+.opt-badge-row{display:flex; align-items:center; gap:12px; justify-content:center; margin-bottom:14px;}
+.opt-badge-lg{
+  width:40px; height:40px; border-radius:50%; background:var(--gold-bright); color:var(--ink);
+  font-family:'Cinzel',serif; font-weight:900; font-size:18px;
+  display:flex; align-items:center; justify-content:center; flex:none;
+}
+.opt-title-lg{font-family:'Cinzel',serif; font-weight:700; font-size:17px; color:var(--gold-bright);}
+.sigh-flag{
+  display:inline-flex; align-items:center; gap:6px; font-family:'Space Mono',monospace; font-size:11px; font-weight:700;
+  padding:6px 12px; border-radius:999px; margin:0 auto 18px; width:fit-content;
+}
+.sigh-flag.yes{background:rgba(92,122,86,0.25); color:#8FB587; border:1px solid rgba(92,122,86,0.5);}
+.sigh-flag.no{background:rgba(185,58,63,0.15); color:#D98A8D; border:1px solid rgba(185,58,63,0.4);}
+.sigh-flag.maybe{background:rgba(124,144,196,0.2); color:#A9BCE8; border:1px solid rgba(124,144,196,0.5);}
+.day-card{
+  background:var(--wine-light); border:1px solid var(--line); border-radius:14px;
+  padding:18px 20px; margin-bottom:14px;
+}
+.day-card-head{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:8px;}
+.day-card-title{font-family:'Cinzel',serif; font-weight:700; font-size:15px; color:var(--gold-bright); display:flex; align-items:center; gap:8px;}
+.day-card-icon{
+  width:30px; height:30px; border-radius:50%; background:rgba(0,0,0,0.25); flex:none;
+  display:flex; align-items:center; justify-content:center; font-size:14px;
+}
+.night-chip{
+  font-family:'Space Mono',monospace; font-size:10px; font-weight:700; text-transform:uppercase;
+  padding:5px 10px; border-radius:999px; white-space:nowrap;
+}
+.night-chip.nc-cluj{background:rgba(230,168,87,0.2); color:var(--gold-bright);}
+.night-chip.nc-sibiu{background:rgba(185,58,63,0.2); color:#E39093;}
+.night-chip.nc-sigh{background:rgba(124,144,196,0.25); color:#A9BCE8;}
+.night-chip.nc-carp{background:rgba(92,122,86,0.25); color:#8FB587;}
+.day-card-desc{font-size:13px; color:var(--cream-dim); line-height:1.5;}
+.day-sub{
+  margin-top:10px; padding:10px 12px; border-left:2px dashed rgba(227,168,87,0.35);
+  font-size:12.5px; color:var(--cream-dim);
+}
+.day-sub b{color:var(--gold-bright);}
+.isma-note{
+  margin-top:10px; padding:10px 12px; border-radius:10px;
+  background:rgba(124,144,196,0.12); border:1px solid rgba(124,144,196,0.3);
+  font-size:12.5px; color:var(--cream-dim);
+}
+.isma-note b{color:#A9BCE8;}
+.mountain-callout{
+  margin-top:8px; background:var(--wine-card); border:1px solid var(--line); border-radius:14px; padding:18px 20px;
+}
+.mountain-callout-title{font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:10px; font-size:14px;}
+.mountain-callout ul{margin:0; padding-left:18px; font-size:12.5px; color:var(--cream-dim); line-height:1.6;}
+.mountain-callout li{margin-bottom:8px;}
+.mountain-callout li:last-child{margin-bottom:0;}
+
 .back-top{
   position:fixed; bottom:20px; right:16px; z-index:90;
   width:44px; height:44px; border-radius:50%;
@@ -337,15 +397,34 @@ h1,h2,h3{font-family:'Cinzel', serif; letter-spacing:0.3px;}
   transition:transform .18s ease, border-color .18s ease;
 }
 .opt-card:hover{transform:translateY(-4px); border-color:var(--gold);}
+.opt-card-clickable{cursor:pointer;}
+.opt-card-clickable.active{border-color:var(--accent); box-shadow:0 0 0 2px var(--accent);}
+.opt-cta{
+  font-family:'Space Mono',monospace; font-size:10.5px; font-weight:700;
+  color:var(--accent); text-align:center; margin-top:2px;
+}
+
+/* ---------- ACORDEÓN ---------- */
+.accordion-summary{
+  cursor:pointer; list-style:none;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  font-family:'Space Mono',monospace; font-size:12px; font-weight:700; color:var(--gold-bright);
+  background:var(--wine-light); border:1px solid var(--line); border-radius:999px;
+  padding:11px 20px; width:fit-content; margin:0 auto;
+}
+.accordion-summary::-webkit-details-marker{display:none;}
+.accordion-summary::marker{content:'';}
+.accordion-summary .chev{transition:transform .2s ease; font-size:10px; display:inline-block;}
+details[open] > .accordion-summary .chev{transform:rotate(180deg);}
+.accordion-inner{margin-top:22px; animation:fadein .2s ease;}
 .opt-card::before{
   content:"";
   position:absolute; top:0; left:0; width:100%; height:4px;
   background:var(--accent, var(--gold));
 }
-.opt-card.c-a{--accent:#8CA684;}
-.opt-card.c-b{--accent:#B93A3F;}
-.opt-card.c-c{--accent:#7C90C4;}
-.opt-card.c-d{--accent:#E3A857;}
+.opt-card.c-1{--accent:#7C90C4;}
+.opt-card.c-2{--accent:#E3A857;}
+.opt-card.c-3{--accent:#8CA684;}
 
 .opt-top{display:flex; align-items:center; gap:10px;}
 .opt-badge{
@@ -477,7 +556,7 @@ tbody tr:hover{background:rgba(227,168,87,0.06);}
 .rs-stop{
   display:flex; flex-direction:column; align-items:center; gap:6px;
   font-family:'Space Mono',monospace; font-size:9.5px; color:var(--cream-dim);
-  width:64px; text-align:center;
+  width:84px; text-align:center;
 }
 .rs-stop .icon{
   width:38px; height:38px; border-radius:50%; background:var(--wine-light);
@@ -611,7 +690,6 @@ footer{
     <a href="#postales">🎨 Sitios</a>
     <a href="#mapa">🗺️ Mapa</a>
     <a href="#opciones">🗳️ Opciones</a>
-    <a href="#ruta">🕰️ Ruta</a>
     <a href="#bucarest">🏛️ Bucarest</a>
   </div>
 </nav>
@@ -635,7 +713,7 @@ footer{
     <div class="facts">
       <span class="fact-chip">📅 <b>2–7 / 2–9 DIC 2026</b></span>
       <span class="fact-chip">✈️ <b>MAD ↔ CLJ / OTP</b></span>
-      <span class="fact-chip">👥 <b>TODO EL GRUPO</b></span>
+      <span class="fact-chip">🗳️ <b>3 RUTAS A VOTAR</b></span>
     </div>
 
     <div style="max-width:600px; margin:20px auto 0; text-align:center;">
@@ -658,6 +736,10 @@ footer{
       <h2>¿Cuántos días de vacaciones hacen falta?</h2>
       <p>Depende de si vuelves desde Cluj (7 dic) o te quedas a exprimir Bucarest (9 dic).</p>
     </div>
+
+    <details class="accordion">
+      <summary class="accordion-summary">Ver calendario completo <span class="chev">▾</span></summary>
+      <div class="accordion-inner">
 
     <div style="margin-bottom:28px;">
       <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:16px; text-align:center;">🚗 Opción estándar (vuelta 7 dic desde Cluj)</div>
@@ -719,14 +801,20 @@ footer{
       <span><i class="cal-swatch" style="background:rgba(124,144,196,0.7)"></i>🎉 Festivo trasladado</span>
       <span>✈️ Viajas, curro hasta la tarde</span>
     </div>
+
+      </div>
+    </details>
   </section>
 
   <!-- BOARDING PASS -->
-  <section class="section" id="vuelo">
+  <section class="section">
     <div class="section-head">
       <span class="label">✈️ Logística</span>
       <h2>Los billetes</h2>
     </div>
+    <details class="accordion" id="vuelo">
+      <summary class="accordion-summary">Ver vuelos y precios <span class="chev">▾</span></summary>
+      <div class="accordion-inner">
     <div class="pass">
       <div class="pass-seg">
         <div class="label">Ida · WizzAir</div>
@@ -758,8 +846,10 @@ footer{
         </div>
         <a class="pass-seg-link" href="https://www.ryanair.com/es/es/vuelos-baratos-de-bucuresti-a-madrid" target="_blank" rel="noopener">✈️ Ver en Ryanair</a>
       </div>
-      <div class="pass-note"><b>5 noches</b> en la opción estándar (2-7 dic), o <b>7 noches</b> si extiendes a Bucarest (2-9 dic). Vuelo de ida WizzAir fijo para todo el grupo. Vuelta: lunes 7 si vuelves directo desde Cluj, o miércoles 9 desde Bucarest. Precio total ida+vuelta: <b>~150€ (Cluj) o ~115-135€ (Bucarest)</b>.</div>
+      <div class="pass-note">La mayoría ya tiene el vuelo comprado — si eres de los pocos que faltan, no te quedes atrás. <b>5 noches</b> en la opción estándar (2-7 dic), o <b>7 noches</b> si extiendes a Bucarest (2-9 dic). Precio total ida+vuelta: <b>~150€ (Cluj) o ~115-135€ (Bucarest)</b>.</div>
     </div>
+      </div>
+    </details>
   </section>
 
   <!-- GRUPO -->
@@ -848,6 +938,18 @@ footer{
         <a class="place-link" href="https://www.google.com/search?q=Cluj-Napoca+Ruman%C3%ADa&hl=es&gl=es" target="_blank" rel="noopener">🔎 Más info</a>
       </div>
       <div class="place-card">
+        <div class="place-icon">🧂</div>
+        <div class="place-name">Salina Turda</div>
+        <div class="place-desc">Mina de sal reconvertida en parque subterráneo, con noria y hasta pista de bolos. A 30 min de Cluj — para estirar la mañana del jueves.</div>
+        <a class="place-link" href="https://www.google.com/search?q=Salina+Turda+Ruman%C3%ADa&hl=es&gl=es" target="_blank" rel="noopener">🔎 Más info</a>
+      </div>
+      <div class="place-card">
+        <div class="place-icon">🏯</div>
+        <div class="place-name">Alba Iulia</div>
+        <div class="place-desc">Ciudadela militar en forma de estrella, justo de camino entre Cluj y Sibiu. Parada rápida en la opción 2 y la 3.</div>
+        <a class="place-link" href="https://www.google.com/search?q=Alba+Iulia+Ruman%C3%ADa&hl=es&gl=es" target="_blank" rel="noopener">🔎 Más info</a>
+      </div>
+      <div class="place-card">
         <div class="place-icon">👁️</div>
         <div class="place-name">Sibiu</div>
         <div class="place-desc">Plaza medieval con casas que parecen tener ojos en el tejado. El mercadillo navideño más bonito del país y castillos a tiro de piedra.</div>
@@ -860,10 +962,22 @@ footer{
         <a class="place-link" href="https://www.google.com/search?q=Sighi%C8%99oara+Ruman%C3%ADa&hl=es&gl=es" target="_blank" rel="noopener">🔎 Más info</a>
       </div>
       <div class="place-card">
-        <div class="place-icon">⛰️</div>
-        <div class="place-name">Cárpatos</div>
-        <div class="place-desc">Montaña de verdad, nieve, casa rural con chimenea y barbacoa. La noche que se convierte en leyenda de Verobao.</div>
-        <a class="place-link" href="https://www.google.com/search?q=P%C4%83ltini%C8%99+C%C3%A1rpatos+Ruman%C3%ADa&hl=es&gl=es" target="_blank" rel="noopener">🔎 Más info</a>
+        <div class="place-icon">🕰️</div>
+        <div class="place-name">Brașov</div>
+        <div class="place-desc">Ciudad medieval a los pies de los Cárpatos, con el Reloj Negro, calles sajonas y una de las plazas más bonitas de Transilvania. Muy cerca de Bran.</div>
+        <a class="place-link" href="https://www.google.com/search?q=Bra%C8%99ov+Ruman%C3%ADa&hl=es&gl=es" target="_blank" rel="noopener">🔎 Más info</a>
+      </div>
+      <div class="place-card">
+        <div class="place-icon">🧛‍♂️</div>
+        <div class="place-name">Castillo de Bran</div>
+        <div class="place-desc">El "Castillo de Drácula" turístico, aunque el vampiro nunca durmió aquí de verdad. Una parada clásica si os desviáis desde Sibiu o Brașov.</div>
+        <a class="place-link" href="https://www.google.com/search?q=Castillo+de+Bran+Ruman%C3%ADa&hl=es&gl=es" target="_blank" rel="noopener">🔎 Más info</a>
+      </div>
+      <div class="place-card">
+        <div class="place-icon">🚡</div>
+        <div class="place-name">Cárpatos (Bâlea)</div>
+        <div class="place-desc">Teleférico hasta el lago helado de Bâlea, a más de 2.000m. La excursión de la opción 3 — nieve de verdad, paisaje alpino y refugio de montaña.</div>
+        <a class="place-link" href="https://www.google.com/search?q=B%C3%A2lea+Cascad%C4%83+teleferico+Ruman%C3%ADa&hl=es&gl=es" target="_blank" rel="noopener">🔎 Más info</a>
       </div>
       <div class="place-card">
         <div class="place-icon">🏛️</div>
@@ -892,281 +1006,87 @@ footer{
       <span><i class="map-dot" style="background:var(--pine)"></i>Naturaleza</span>
       <span><i class="map-dot" style="background:#7C90C4"></i>Pueblos con encanto</span>
     </div>
-
-    <div class="car-box" style="max-width:560px; margin:24px auto 0;">
-      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:6px; text-align:center;">🚗 Distancias clave (pensando en la ruta)</div>
-      <div class="dist-row">
-        <div class="dist-route">Cluj → Sibiu</div>
-        <div class="dist-values"><span class="dist-pill car">🚗 2h20</span><span class="dist-pill pt">🚌 ~2h25</span></div>
-      </div>
-      <div class="dist-row">
-        <div class="dist-route">Cluj → Sighișoara</div>
-        <div class="dist-values"><span class="dist-pill car">🚗 2h30</span><span class="dist-pill pt">🚌 ~2h30-2h50</span></div>
-      </div>
-      <div class="dist-row">
-        <div class="dist-route">Sibiu → Sighișoara</div>
-        <div class="dist-values"><span class="dist-pill car">🚗 1h40</span><span class="dist-pill pt">🚆 ~1h30-2h</span></div>
-      </div>
-      <div class="dist-row">
-        <div class="dist-route">Sibiu → Castillos (Bran)</div>
-        <div class="dist-values"><span class="dist-pill car">🚗 2h15</span><span class="dist-pill pt">🚌 ~4h+ (transbordos)</span></div>
-      </div>
-      <div class="dist-row">
-        <div class="dist-route">Cluj → Salina Turda</div>
-        <div class="dist-values"><span class="dist-pill car">🚗 30 min</span><span class="dist-pill pt">🚌 ~1h</span></div>
-      </div>
-      <div class="car-foot" style="text-align:center;">Por eso la opción B (Cárpatos) y la C (Sighișoara con noche) piden un día más de coche: hay más kilómetros de por medio. Para Cluj-Sibiu y Sibiu-Sighișoara, el tren o el bus son una alternativa real; para los castillos, mejor ir en coche.</div>
-    </div>
   </section>
 
   <!-- OPCIONES -->
   <section class="section" id="opciones">
     <div class="section-head">
       <span class="label">🗺️ A votación</span>
-      <h2>4 caminos, 1 solo grupo</h2>
-      <p>Todas las opciones llevan mercadillos, castillos y cañas de serie. Lo que cambia es la ruta, cuántas veces hacemos la maleta y el nivel de bureo.</p>
+      <h2>3 opciones, 1 solo grupo</h2>
+      <p>Miércoles y jueves son iguales pase lo que pase (llegada + Cluj). Lo que cambia es el fin de semana — de viernes a lunes. Toca una tarjeta para ver el día a día completo.</p>
     </div>
 
-    <div class="grid-options">
-
-      <!-- OPCIÓN A -->
-      <div class="opt-card c-a">
+    <div style="text-align:center; font-family:'Space Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--gold); margin-bottom:4px;">Comparativa rápida</div>
+    <div style="text-align:center; font-size:12px; color:var(--cream-dim); margin-bottom:16px;">Toca una tarjeta para ver su día a día completo, abajo del todo.</div>
+    <div class="grid-options" style="margin-bottom:32px;">
+      <div class="opt-card c-1 opt-card-clickable active" data-opt="1" role="button" tabindex="0">
         <div class="opt-top">
-          <div class="opt-badge">A</div>
-          <div class="opt-title">La clásica equilibrada</div>
+          <div class="opt-badge">1</div>
+          <div class="opt-title">Sighișoara primero</div>
         </div>
-        <div class="opt-route">2 noches Cluj · 3 noches Sibiu</div>
-        <div class="mini-cal">
-          <div class="mini-cell mc-cluj"><span class="d">X 2</span><span class="n">Cluj</span></div>
-          <div class="mini-cell mc-cluj"><span class="d">J 3</span><span class="n">Cluj</span></div>
-          <div class="mini-cell mc-sibiu"><span class="d">V 4</span><span class="n">Sibiu</span></div>
-          <div class="mini-cell mc-sibiu"><span class="d">S 5</span><span class="n">Sibiu</span></div>
-          <div class="mini-cell mc-sibiu"><span class="d">D 6</span><span class="n">Sibiu</span></div>
-          <div class="mini-cell mc-return"><span class="d">L 7</span><span class="n">Vuelo</span></div>
-        </div>
+        <div class="opt-route">2-3 noches Cluj · 0-1 noche Sighișoara · 2 noches Sibiu</div>
         <div class="tag-row">
-          <span class="tag pro">Máximo confort</span>
-          <span class="tag pro">Solo 1 cambio de hotel</span>
-          <span class="tag con">Menos aventura extra</span>
+          <span class="tag pro">Fortaleza iluminada de noche</span>
+          <span class="tag con">Viernes largo (avanzadilla)</span>
+        </div>
+        <div class="ratings">
+          <div class="rate-row"><span class="rate-label">Comodidad</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
+          <div class="rate-row"><span class="rate-label">Nivel bureo</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
+          <div class="rate-row"><span class="rate-label">Logística fácil</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div>
+        </div>
+        <div class="opt-quote">Sighișoara de noche, luego a instalarse tranquilos en Sibiu.</div>
+        <div class="opt-cta">Ver día a día ↓</div>
+      </div>
+
+      <div class="opt-card c-2 opt-card-clickable" data-opt="2" role="button" tabindex="0">
+        <div class="opt-top">
+          <div class="opt-badge">2</div>
+          <div class="opt-title">Sibiu primero</div>
+        </div>
+        <div class="opt-route">2 noches Cluj · 3 noches Sibiu · excursión Sighișoara en el día</div>
+        <div class="tag-row">
+          <span class="tag pro">Sin maletas viajeras</span>
+          <span class="tag con">Sighișoara en modo exprés</span>
         </div>
         <div class="ratings">
           <div class="rate-row"><span class="rate-label">Comodidad</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div>
           <div class="rate-row"><span class="rate-label">Nivel bureo</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div>
           <div class="rate-row"><span class="rate-label">Logística fácil</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div>
         </div>
-        <div class="opt-quote">Para quien quiere disfrutar del viaje sin convertirlo en una mudanza.</div>
+        <div class="opt-quote">La más fácil de las tres — un solo hotel toda la estancia.</div>
+        <div class="opt-cta">Ver día a día ↓</div>
       </div>
 
-      <!-- OPCIÓN B -->
-      <div class="opt-card c-b">
+      <div class="opt-card c-3 opt-card-clickable" data-opt="3" role="button" tabindex="0">
         <div class="opt-top">
-          <div class="opt-badge">B</div>
-          <div class="opt-title">Fiebre de montaña</div>
+          <div class="opt-badge">3</div>
+          <div class="opt-title">Alta montaña</div>
         </div>
-        <div class="opt-route">2 noches Cluj · 2 noches Sibiu · 1 noche Cárpatos</div>
-        <div class="mini-cal">
-          <div class="mini-cell mc-cluj"><span class="d">X 2</span><span class="n">Cluj</span></div>
-          <div class="mini-cell mc-cluj"><span class="d">J 3</span><span class="n">Cluj</span></div>
-          <div class="mini-cell mc-carp"><span class="d">V 4</span><span class="n">Cárp.</span></div>
-          <div class="mini-cell mc-sibiu"><span class="d">S 5</span><span class="n">Sibiu</span></div>
-          <div class="mini-cell mc-sibiu"><span class="d">D 6</span><span class="n">Sibiu</span></div>
-          <div class="mini-cell mc-return"><span class="d">L 7</span><span class="n">Vuelo</span></div>
-        </div>
+        <div class="opt-route">1-2 noches Cluj · 3 noches Sibiu · teleférico a Bâlea (sin Sighișoara)</div>
         <div class="tag-row">
-          <span class="tag pro">Nivel bureo 100%</span>
-          <span class="tag pro">Barbacoa + nieve + chimenea</span>
-          <span class="tag con">Más logística</span>
-          <span class="tag con">2 cambios de hotel</span>
+          <span class="tag pro">Nieve de verdad + teleférico</span>
+          <span class="tag con">Depende del tiempo</span>
         </div>
         <div class="ratings">
           <div class="rate-row"><span class="rate-label">Comodidad</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div>
           <div class="rate-row"><span class="rate-label">Nivel bureo</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div>
           <div class="rate-row"><span class="rate-label">Logística fácil</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div>
         </div>
-        <div class="opt-quote">La noche que se va a contar en el grupo durante años.</div>
+        <div class="opt-quote">La más distinta — cambia Sighișoara por un paisaje de otro planeta.</div>
+        <div class="opt-cta">Ver día a día ↓</div>
       </div>
-
-      <!-- OPCIÓN C -->
-      <div class="opt-card c-c">
-        <div class="opt-top">
-          <div class="opt-badge">C</div>
-          <div class="opt-title">Ruta 3 paradas</div>
-        </div>
-        <div class="opt-route">2 noches Cluj · 1 noche Sighișoara · 2 noches Sibiu</div>
-        <div class="mini-cal">
-          <div class="mini-cell mc-cluj"><span class="d">X 2</span><span class="n">Cluj</span></div>
-          <div class="mini-cell mc-cluj"><span class="d">J 3</span><span class="n">Cluj</span></div>
-          <div class="mini-cell mc-sigh"><span class="d">V 4</span><span class="n">Sigh.</span></div>
-          <div class="mini-cell mc-sibiu"><span class="d">S 5</span><span class="n">Sibiu</span></div>
-          <div class="mini-cell mc-sibiu"><span class="d">D 6</span><span class="n">Sibiu</span></div>
-          <div class="mini-cell mc-return"><span class="d">L 7</span><span class="n">Vuelo</span></div>
-        </div>
-        <div class="tag-row">
-          <span class="tag pro">Cuna de Drácula</span>
-          <span class="tag pro">Pueblo medieval UNESCO</span>
-          <span class="tag con">3 cambios de hotel</span>
-          <span class="tag con">Maletas viajeras</span>
-        </div>
-        <div class="ratings">
-          <div class="rate-row"><span class="rate-label">Comodidad</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div>
-          <div class="rate-row"><span class="rate-label">Nivel bureo</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
-          <div class="rate-row"><span class="rate-label">Logística fácil</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div>
-        </div>
-        <div class="opt-quote">Para los que viajan con la maleta como si fuera una mochila.</div>
-      </div>
-
-      <!-- OPCIÓN D -->
-      <div class="opt-card c-d">
-        <div class="opt-top">
-          <div class="opt-badge">D</div>
-          <div class="opt-title">Sighișoara de paso</div>
-        </div>
-        <div class="opt-route">2 noches Cluj · 3 noches Sibiu · parada viernes en Sighișoara</div>
-        <div class="mini-cal">
-          <div class="mini-cell mc-cluj"><span class="d">X 2</span><span class="n">Cluj</span></div>
-          <div class="mini-cell mc-cluj"><span class="d">J 3</span><span class="n">Cluj</span></div>
-          <div class="mini-cell mc-sigh"><span class="d">V 4</span><span class="n">Sigh.*</span></div>
-          <div class="mini-cell mc-sibiu"><span class="d">S 5</span><span class="n">Sibiu</span></div>
-          <div class="mini-cell mc-sibiu"><span class="d">D 6</span><span class="n">Sibiu</span></div>
-          <div class="mini-cell mc-return"><span class="d">L 7</span><span class="n">Vuelo</span></div>
-        </div>
-        <div style="font-size:10.5px; color:var(--cream-dim); margin-top:-6px;">*Parada de día en Sighișoara, se duerme en Sibiu</div>
-        <div class="tag-row">
-          <span class="tag pro">Lo mejor de los dos mundos</span>
-          <span class="tag pro">1 solo cambio de hotel</span>
-          <span class="tag con">Viernes maratoniano</span>
-        </div>
-        <div class="ratings">
-          <div class="rate-row"><span class="rate-label">Comodidad</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
-          <div class="rate-row"><span class="rate-label">Nivel bureo</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
-          <div class="rate-row"><span class="rate-label">Logística fácil</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
-        </div>
-        <div class="opt-quote">Ves Sighișoara, comes de fábula y duermes siempre en el mismo sitio. El truco del almendruco.</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- TABLA COMPARATIVA -->
-  <section class="section">
-    <div class="section-head">
-      <span class="label">📊 Resumen</span>
-      <h2>Todo de un vistazo</h2>
-    </div>
-    <div class="table-scroll-wrap">
-    <div class="table-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>Opción</th>
-            <th>Cluj</th>
-            <th>Sibiu</th>
-            <th>Extra</th>
-            <th>Comodidad</th>
-            <th>Bureo</th>
-            <th>Logística</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="name">A · Clásica</td>
-            <td>2 noches</td>
-            <td>3 noches</td>
-            <td>—</td>
-            <td>●●●●●</td>
-            <td>●●●○○</td>
-            <td>●●●●●</td>
-          </tr>
-          <tr>
-            <td class="name">B · Montaña</td>
-            <td>2 noches</td>
-            <td>2 noches</td>
-            <td>1 noche Cárpatos</td>
-            <td>●●●○○</td>
-            <td>●●●●●</td>
-            <td>●●○○○</td>
-          </tr>
-          <tr>
-            <td class="name">C · 3 Paradas</td>
-            <td>2 noches</td>
-            <td>2 noches</td>
-            <td>1 noche Sighișoara</td>
-            <td>●●○○○</td>
-            <td>●●●●○</td>
-            <td>●●○○○</td>
-          </tr>
-          <tr>
-            <td class="name">D · De paso</td>
-            <td>2 noches</td>
-            <td>3 noches</td>
-            <td>Parada viernes Sighișoara</td>
-            <td>●●●●○</td>
-            <td>●●●●○</td>
-            <td>●●●●○</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    </div>
-    <div class="table-hint">👉 Desliza para ver todas las columnas</div>
-  </section>
-
-  <!-- TRANSPORTE -->
-  <section class="section">
-    <div class="section-head">
-      <span class="label">🚗🚆 Transporte</span>
-      <h2>Cómo nos movemos</h2>
-      <p>Para los castillos y las paradas rurales hará falta coche sí o sí, pero para los tramos directos de ciudad a ciudad hay alternativa — tren y bus también son buena opción, y le quitan un coche al grupo.</p>
-    </div>
-    <div class="car-box">
-      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:4px; text-align:center;">🚗 Coche de alquiler — días mínimos según la opción</div>
-      <div class="car-row"><span class="who">Fijo para todas las opciones — Viernes 4 (traslado) + Sábado 5 (ruta de castillos)</span><span class="days">2 días</span></div>
-      <div class="car-row"><span class="who">Opción B · Fiebre de montaña (bajada de los Cárpatos)</span><span class="days">+1 día → 3 días</span></div>
-      <div class="car-row"><span class="who">Opción C · Ruta 3 paradas (parada intermedia en Sighișoara)</span><span class="days">+1 día → 3 días</span></div>
-      <div class="car-row"><span class="who">Opción D · Sighișoara de paso (mismo alojamiento fijo)</span><span class="days">2 días</span></div>
-    </div>
-    <div class="car-foot">Con 15 personas iremos en 2-3 coches/furgonetas repartiendo conductores. En cuanto se cierre la opción, se organiza quién conduce (y quién promete no tocar la radio).</div>
-
-    <div class="car-box" style="margin-top:18px;">
-      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:10px; text-align:center;">🚆 Tren y bus — para los tramos directos</div>
-      <div class="car-row"><span class="who">🚆 Sibiu ↔ Sighișoara (CFR)</span><span class="days">~1h30-2h · desde 3-4€</span></div>
-      <div class="car-row"><span class="who">🚌 Sibiu ↔ Sighișoara (bus local)</span><span class="days">~1h45 · desde 3€</span></div>
-      <div class="car-row"><span class="who">🚌 Cluj ↔ Sibiu (FlixBus, LIKEBUS, otros)</span><span class="days">~2h25 · desde 5€</span></div>
-      <div class="car-row"><span class="who">🚌 Cluj ↔ Sighișoara (FlixBus, otros)</span><span class="days">~2h30 · desde 7€</span></div>
-      <div class="car-row"><span class="who">🚌 Sibiu ↔ Bucarest (FlixBus, FANY, otros)</span><span class="days">~5-6h · desde 9-15€</span></div>
-    </div>
-    <div class="car-foot">El tren Sibiu-Sighișoara es la joya de la corona (CFR, los trenes nacionales): barato, cómodo y con vistas. Para los buses: FlixBus es lo más fácil (app + wifi), pero hay otras como LIKEBUS, FANY, Horas... todas conectan las ciudades principales. No todo el grupo tiene que ir siempre en coche — si alguien se va por libre, bien.</div>
-  </section>
-
-  <!-- CRONOGRAMA -->
-  <section class="section" id="ruta">
-    <div class="section-head">
-      <span class="label">🕰️ Hoja de ruta</span>
-      <h2>El plan, día a día</h2>
-      <p>Los días de Cluj y el regreso son fijos para todo el grupo. Los 3 días centrales cambian según lo que votemos. Lo marcado como "opcional" no es plan cerrado — son ideas de la zona por si a alguien le apetece desviarse un rato.</p>
     </div>
 
-    <div class="route-strip">
-      <div class="rs-stop"><div class="icon">✈️</div>MIÉ · LLEGADA</div>
-      <div class="rs-arrow">→</div>
-      <div class="rs-stop"><div class="icon">🏙️</div>JUE · CLUJ</div>
-      <div class="rs-arrow">→</div>
-      <div class="rs-stop"><div class="icon">🚐</div>VIE · RUTA</div>
-      <div class="rs-arrow">→</div>
-      <div class="rs-stop"><div class="icon">🏰</div>SÁB · SIBIU</div>
-      <div class="rs-arrow">→</div>
-      <div class="rs-stop"><div class="icon">🚐</div>DOM · VUELTA</div>
-      <div class="rs-arrow">→</div>
-      <div class="rs-stop"><div class="icon">✈️</div>LUN · CASA</div>
-    </div>
+    <div style="text-align:center; font-family:'Space Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--gold); margin-bottom:12px;" id="detalle-anchor">Detalle día a día</div>
 
-    <div class="timeline">
+    <div class="timeline" style="max-width:640px; margin:0 auto 8px;">
       <div class="t-item">
-        <div class="t-dot">🛫</div>
+        <div class="t-dot">✈️</div>
         <div class="t-body">
           <div class="t-day">MIÉ 2 DIC</div>
-          <div class="t-title">Despegue</div>
-          <div class="t-desc">Vuelo MAD → CLJ, 20:55h. Aterrizaje de noche, check-in exprés y <em>primera caña de bienvenida</em> obligatoria.</div>
+          <div class="t-title">Solo volamos</div>
+          <div class="t-desc">Vuelo MAD → CLJ, 20:55h. Aterrizaje de noche, check-in exprés y primera caña de bienvenida.</div>
+          <div class="t-extra"><b>🛏️ Duerme en:</b> Cluj</div>
         </div>
       </div>
       <div class="t-item">
@@ -1174,55 +1094,212 @@ footer{
         <div class="t-body">
           <div class="t-day">JUE 3 DIC</div>
           <div class="t-title">Cluj-Napoca</div>
-          <div class="t-desc">Casco histórico, mercadillo navideño y <em>tardeo</em> por la ciudad con más ambiente universitario de Rumanía.</div>
+          <div class="t-desc">Casco histórico, mercadillo navideño y tardeo. Igual en las 3 opciones.</div>
+          <div class="t-extra"><b>🛏️ Duerme en:</b> Cluj</div>
           <div class="t-extra"><b>Opcional, si alguien quiere estirar la mañana:</b> 🧂 Salina Turda (mina de sal reconvertida en parque, 30 min) y el cañón de 🌲 Cheile Turzii, casi pegados el uno al otro.</div>
         </div>
       </div>
-      <div class="t-item">
-        <div class="t-dot">🚐</div>
-        <div class="t-body">
-          <div class="t-day">VIE 4 DIC</div>
-          <div class="t-title">Ruta hacia Sibiu</div>
-          <div class="t-desc">El día que cambia según la opción votada: <em>casa rural en los Cárpatos</em> (B), <em>parada en Sighișoara</em> (C o D) o directos a Sibiu (A).</div>
-          <div class="t-extra"><b>Opcional según la ruta:</b> si vamos por la general, 🏯 Alba Iulia (ciudadela en forma de estrella) pilla de camino, casi a medio camino entre Cluj y Sibiu. Si sale la opción B, la parada de montaña sería en ⛰️ Păltiniș.</div>
-        </div>
+    </div>
+    <div style="text-align:center; font-size:11.5px; color:var(--cream-dim); margin-bottom:24px;">↓ A partir de aquí, cada opción tira por su lado ↓</div>
+
+    <!-- PANEL OPCIÓN 1 -->
+    <div class="opt-panel active" id="opt-panel-1">
+      <div class="opt-badge-row">
+        <div class="opt-badge-lg">1</div>
+        <div class="opt-title-lg">Rumbo a Sighișoara primero + campamento base en Sibiu</div>
       </div>
-      <div class="t-item">
-        <div class="t-dot">🏰</div>
-        <div class="t-body">
-          <div class="t-day">SÁB 5 DIC</div>
-          <div class="t-title">Sibiu y castillos</div>
-          <div class="t-desc">Castillos de peli para quien no los haya pisado ya (Bran / Peleș) — para los que repetimos, plan libre por Sibiu. El mercadillo más bonito del país y <em>la fiesta grande del grupo</em> por la noche.</div>
-          <div class="t-extra"><b>Opcional, para quien no se conforme con dos castillos:</b> 🏰 Râșnov está a solo 10 km de Bran. Y para quien prefiera cambiar de aires (o repite), el 🏰 Castillo de Corvino en Hunedoara es más lejos pero impresionante — ahí dicen que estuvo preso Vlad el Empalador.</div>
+      <div class="sigh-flag maybe">🌙 Noche en Sighișoara: depende de la subopción (ver viernes)</div>
+
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-dot">🚐</div>
+          <div class="t-body">
+            <div class="t-day">VIE 4 DIC</div>
+            <div class="t-title">Salida hacia Sighișoara</div>
+            <div class="t-desc">Salida de Cluj hacia Sighișoara. Hay dos formas de hacerlo:</div>
+            <div class="t-extra"><b>Subopción Avanzadilla:</b> el grupo principal sale el viernes tarde/noche directo a Sighișoara (2h) para hacer noche allí y ver la fortaleza iluminada. <b>🛏️ Duerme en Sighișoara.</b></div>
+            <div class="t-extra"><b>Subopción Salida Sábado:</b> todo el grupo pernocta el viernes en Cluj y sale el sábado por la mañana hacia Sighișoara. <b>🛏️ Duerme en Cluj.</b></div>
+            <div class="isma-note">✈️ <b>Isma y María</b> (que aterrizan a la 1:00 am) hacen noche en Cluj pase lo que pase, y suben a Sighișoara el sábado temprano para juntarse con el grupo.</div>
+          </div>
         </div>
-      </div>
-      <div class="t-item">
-        <div class="t-dot">🚐</div>
-        <div class="t-body">
-          <div class="t-day">DOM 6 DIC</div>
-          <div class="t-title">Vuelta a Cluj</div>
-          <div class="t-desc">Día de tránsito: recogemos macutos en Sibiu y volvemos a Cluj para tener el vuelo del lunes a tiro. De camino, <em>parada en un mercadillo</em> (o segunda vuelta por el de Cluj) y cena de despedida — aquí nadie se queda sin plan.</div>
-          <div class="t-extra"><b>Opcional, para los muy freakies de los pueblos sajones:</b> 🏘️ Biertan y 🏘️ Viscri quedan por esta zona, aunque piden desviarse bastante — mejor si alguien ya tiene coche cogido y ganas de madrugar.</div>
+        <div class="t-item">
+          <div class="t-dot">🏰</div>
+          <div class="t-body">
+            <div class="t-day">SÁB 5 DIC</div>
+            <div class="t-title">Sighișoara + traslado a Sibiu</div>
+            <div class="t-desc">Visita a la ciudadela medieval de Sighișoara y comida allí. Por la tarde, traslado conjunto a Sibiu (1h 35m) para establecer el campamento base, cenar y pernoctar.</div>
+            <div class="t-extra"><b>🛏️ Duerme en:</b> Sibiu</div>
+          </div>
         </div>
-      </div>
-      <div class="t-item">
-        <div class="t-dot">✈️</div>
-        <div class="t-body">
-          <div class="t-day">LUN 7 DIC</div>
-          <div class="t-title">Vuelta a casa</div>
-          <div class="t-desc">Vuelo CLJ → MAD, 17:20h. Resaca, maletas y ya pensando en el <em>próximo viaje de Verobao</em>.</div>
+        <div class="t-item">
+          <div class="t-dot">🏙️</div>
+          <div class="t-body">
+            <div class="t-day">DOM 6 DIC</div>
+            <div class="t-title">Día completo en Sibiu</div>
+            <div class="t-desc">Día completo y noche en Sibiu para disfrutar de su centro histórico y ambiente — sin prisa, sin maletas.</div>
+            <div class="t-extra"><b>🛏️ Duerme en:</b> Sibiu</div>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-dot">✈️</div>
+          <div class="t-body">
+            <div class="t-day">LUN 7 DIC</div>
+            <div class="t-title">Separación de grupos</div>
+            <div class="t-desc">Vuelta a casa desde Cluj, o bajada hacia <a href="#bucarest" style="color:var(--gold-bright);">Bucarest</a> para quien extienda.</div>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- PANEL OPCIÓN 2 -->
+    <div class="opt-panel" id="opt-panel-2">
+      <div class="opt-badge-row">
+        <div class="opt-badge-lg">2</div>
+        <div class="opt-title-lg">Rumbo a Sibiu primero + excursión de un día a Sighișoara</div>
+      </div>
+      <div class="sigh-flag no">🌙 Noche en Sighișoara: no, por defecto (excursión de ida y vuelta) — variante opcional, ver domingo</div>
+
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-dot">🏯</div>
+          <div class="t-body">
+            <div class="t-day">VIE 4 DIC</div>
+            <div class="t-title">A Sibiu, vía Alba Iulia</div>
+            <div class="t-desc">Traslado directo de Cluj hacia Sibiu, con parada cultural en la ciudadela fortificada de Alba Iulia de camino. Llegada a Sibiu para alojarse.</div>
+            <div class="t-extra"><b>🛏️ Duerme en:</b> Sibiu</div>
+            <div class="isma-note">✈️ <b>Isma y María</b> llegan directo a Sibiu, o a Cluj según cómo cuadren los horarios de vuelo — se decide más cerca de la fecha.</div>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-dot">🏙️</div>
+          <div class="t-body">
+            <div class="t-day">SÁB 5 DIC</div>
+            <div class="t-title">Sibiu a fondo</div>
+            <div class="t-desc">Día dedicado a conocer Sibiu a fondo: sus plazas, su ambiente urbano y el mercadillo navideño con calma.</div>
+            <div class="t-extra"><b>🛏️ Duerme en:</b> Sibiu</div>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-dot">🏰</div>
+          <div class="t-body">
+            <div class="t-day">DOM 6 DIC</div>
+            <div class="t-title">Excursión a Sighișoara</div>
+            <div class="t-desc">Excursión de ida y vuelta en el día a Sighișoara (1h 30m por trayecto). Se visita todo y se vuelve a dormir a Sibiu.</div>
+            <div class="t-extra"><b>🛏️ Duerme en:</b> Sibiu</div>
+            <div class="t-extra"><b>Variante opcional:</b> en vez de volver, hacer noche del domingo en Sighișoara — cambia la logística del lunes (habría que volver a por el coche/maletas antes de ir a Cluj o Bucarest). <b>🛏️ Sighișoara en ese caso.</b></div>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-dot">✈️</div>
+          <div class="t-body">
+            <div class="t-day">LUN 7 DIC</div>
+            <div class="t-title">Regreso</div>
+            <div class="t-desc">Regreso hacia Cluj por autopista, o continuación de la ruta al sur hacia <a href="#bucarest" style="color:var(--gold-bright);">Bucarest</a> para quien extienda.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL OPCIÓN 3 -->
+    <div class="opt-panel" id="opt-panel-3">
+      <div class="opt-badge-row">
+        <div class="opt-badge-lg">3</div>
+        <div class="opt-title-lg">Experiencia de alta montaña, sin Sighișoara (Cárpatos y teleférico)</div>
+      </div>
+      <div class="sigh-flag no">🌙 Noche en Sighișoara: no — se cambia por una excursión invernal a los Cárpatos (Făgăraș, lago helado de Bâlea)</div>
+
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-dot">🏯</div>
+          <div class="t-body">
+            <div class="t-day">VIE 4 DIC</div>
+            <div class="t-title">Noche en Cluj o traslado a Sibiu</div>
+            <div class="t-desc">Noche en Cluj, o desplazamiento a Sibiu con parada previa en Alba Iulia — la misma elección que en la opción 2.</div>
+            <div class="t-extra"><b>🛏️ Duerme en:</b> Sibiu (o Cluj, según elección)</div>
+            <div class="isma-note">✈️ <b>Isma y María</b> se juntan al grupo el viernes en Sibiu o Cluj, según cómo se organice ese día.</div>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-dot">🚡</div>
+          <div class="t-body">
+            <div class="t-day">SÁB 5 DIC</div>
+            <div class="t-title">Teleférico a Bâlea</div>
+            <div class="t-desc">Excursión a la estación del teleférico de Cascada Bâlea. Subida en teleférico a más de 2.000 metros de altitud, comida en el refugio de montaña y tarde en el entorno alpino. Regreso a Sibiu para pernoctar.</div>
+            <div class="t-extra"><b>🛏️ Duerme en:</b> Sibiu</div>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-dot">🛌</div>
+          <div class="t-body">
+            <div class="t-day">DOM 6 DIC</div>
+            <div class="t-title">Día relajado</div>
+            <div class="t-desc">Día relajado y noche completa de todo el grupo en Sibiu, para recuperarse de la excursión de montaña.</div>
+            <div class="t-extra"><b>🛏️ Duerme en:</b> Sibiu</div>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-dot">✈️</div>
+          <div class="t-body">
+            <div class="t-day">LUN 7 DIC</div>
+            <div class="t-title">Logística de partida</div>
+            <div class="t-desc">Vuelta a casa desde Cluj, o bajada hacia <a href="#bucarest" style="color:var(--gold-bright);">Bucarest</a> para los dos subgrupos.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mountain-callout">
+        <div class="mountain-callout-title">📌 Investigación de logística y consejos para la opción 3</div>
+        <ul>
+          <li><b>Conducción y cadenas:</b> por normativa en Rumanía, entre noviembre y marzo los neumáticos de invierno (marcado M+S o 3PMSF) son obligatorios si hay nieve o hielo. Para subir hasta la base de Cascada Bâlea la carretera suele estar limpia, pero al ser zona de alta montaña es muy aconsejable incluir cadenas de nieve en el alquiler del coche por si hay nevada reciente.</li>
+          <li><b>Acceso a la montaña:</b> la famosa carretera Transfăgărășan se cierra al tráfico en el tramo de alta montaña en invierno, así que el acceso hasta arriba se hace obligatoriamente en el teleférico de Bâlea Cascadă.</li>
+          <li><b>Alojamiento:</b> para evitar carreteras de montaña de noche, mejor mantener el alojamiento en el centro de Sibiu (a 45-60 min de la base del teleférico) en vez de buscar casas rurales aisladas en la sierra.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="max-width:560px; margin:32px auto 0; text-align:center; background:var(--wine-light); border:1px solid var(--line); border-radius:14px; padding:18px 20px;">
+      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:6px;">🗳️ ¿Ya sabes cuál te gusta más?</div>
+      <div style="font-size:13px; color:var(--cream-dim);">Dilo por el grupo de WhatsApp — la opción que más apoyos tenga en unos días es la que sale. No hace falta esperar a nada más.</div>
+    </div>
+  </section>
+
+  <!-- TRANSPORTE -->
+  <section class="section">
+    <div class="section-head">
+      <span class="label">🚗🚆 Transporte</span>
+      <h2>Cómo nos movemos</h2>
+      <p>La buena noticia: en principio, para casi todos los tramos hay bus o tren directo, así que nadie depende 100% del coche. Y si al final queréis alquilar uno para las excursiones (Bâlea, Bran, Alba Iulia...), el alquiler en Rumanía es barato — la parte cara suele ser la gasolina y los peajes, no el coche en sí.</p>
+    </div>
+    <div class="car-box">
+      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:4px; text-align:center;">🚗 Coche de alquiler — cuándo hace falta según la opción</div>
+      <div class="car-row"><span class="who">Opción 1 · Sighișoara primero (traslados Cluj-Sigh.-Sibiu)</span><span class="days">1-2 días</span></div>
+      <div class="car-row"><span class="who">Opción 2 · Sibiu primero (Alba Iulia + excursión Sighișoara)</span><span class="days">1-2 días</span></div>
+      <div class="car-row"><span class="who">Opción 3 · Alta montaña (excursión a Bâlea + cadenas de nieve)</span><span class="days">1-2 días</span></div>
+    </div>
+    <div class="car-foot">Con el grupo tan grande, seguramente compense alquilar 2-3 coches/furgonetas entre todos y repartir gastos — sale más barato per cápita que ir todos en bus suelto para las excursiones. En cuanto se cierre la opción, se organiza quién conduce (y quién promete no tocar la radio).</div>
+
+    <div class="car-box" style="margin-top:18px;">
+      <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:10px; text-align:center;">🚆 Tren y bus — para casi todos los tramos entre ciudades</div>
+      <div class="car-row"><span class="who">🚆 Sibiu ↔ Sighișoara (CFR)</span><span class="days">~1h30-2h · desde 3-4€</span></div>
+      <div class="car-row"><span class="who">🚌 Sibiu ↔ Sighișoara (bus local)</span><span class="days">~1h45 · desde 3€</span></div>
+      <div class="car-row"><span class="who">🚌 Cluj ↔ Sibiu (FlixBus, LIKEBUS, otros)</span><span class="days">~2h25 · desde 5€</span></div>
+      <div class="car-row"><span class="who">🚌 Cluj ↔ Sighișoara (FlixBus, otros)</span><span class="days">~2h30 · desde 7€</span></div>
+      <div class="car-row"><span class="who">🚌 Sibiu ↔ Bucarest (FlixBus, FANY, otros)</span><span class="days">~5-6h · desde 9-15€</span></div>
+    </div>
+    <div class="car-foot">El tren Sibiu-Sighișoara es la joya de la corona (CFR, los trenes nacionales): barato, cómodo y con vistas. Para los buses: FlixBus es lo más fácil (app + wifi), pero hay otras como LIKEBUS, FANY, Horas... todas conectan las ciudades principales. La única excepción real es la excursión de la opción 3 (Bâlea): ahí sí conviene coche, porque el teleférico está en mitad de la montaña.</div>
   </section>
 
   <!-- BUCAREST EXTENSIÓN -->
-  <section class="section" id="bucarest">
+  <section class="section">
     <div class="section-head">
       <span class="label">📍 Extensión</span>
       <h2>De Sibiu a Bucarest — 2 días más</h2>
       <p>Para quien quiera exprimir unos días más después de que el grupo vuelva (8-9 dic). No hay nada planeado, pero aquí va la logística.</p>
     </div>
+
+    <details class="accordion" id="bucarest">
+      <summary class="accordion-summary">Ver logística de Bucarest <span class="chev">▾</span></summary>
+      <div class="accordion-inner">
 
     <div class="car-box">
       <div style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); margin-bottom:10px; text-align:center;">🚗 Cómo llegar desde Sibiu a Bucarest</div>
@@ -1247,13 +1324,16 @@ footer{
       <div class="car-foot">El vuelo sale de Bucharesti Henri Coandă (OTP), a unos 15 km del centro. Fácil de coger autobús — no hace falta alquilar coche solo para eso. Cae a última hora de la noche, así que disfrutas el miércoles sin prisa por madrugar.</div>
     </div>
     <a class="place-link" style="margin:0 0 20px 28px;" href="https://www.ryanair.com/es/es/vuelos-baratos-de-bucuresti-a-madrid" target="_blank" rel="noopener">✈️ Ver ruta OTP → MAD en Ryanair</a>
+
+      </div>
+    </details>
   </section>
 
   <!-- CTA -->
   <div class="cta">
     <div class="seal">🧛‍♂️</div>
-    <h2>Ahora te toca a ti, ¿nos vamos a Rumanía verdad?</h2>
-    <p>Algunos ya han pillado el vuelo — si no lo has hecho, es lo primero. Después, échale un ojo a las rutas (A, B, C o D) y a los sitios del mapa que te llamen la atención, que ya votaremos por el grupo. Si ves algo que te apetezca y no está contemplado, lo metemos.</p>
+    <h2>Venga, a votar</h2>
+    <p>Mira las 3 rutas y di cuál te gusta más por el grupo. Y si aún no has pillado el billete, tranquilo — cuando quieras.</p>
   </div>
 
   <footer>VEROBAO · un grupo que cambia de nombre cada diciembre, 0 arrepentimientos</footer>
@@ -1266,6 +1346,16 @@ footer{
 <script data-goatcounter="https://rumania2026-verobao.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 <script>
+  // Si se navega a un acordeón cerrado (ej. #bucarest desde el menú), lo abre solo
+  function openHashDetails(){
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el && el.tagName === 'DETAILS') el.open = true;
+    }
+  }
+  window.addEventListener('hashchange', openHashDetails);
+  openHashDetails();
+
   const map = L.map('trip-map', { scrollWheelZoom: false }).setView([46.05, 24.3], 7);
 
   // En táctil, el mapa arranca sin arrastre/zoom hasta que el usuario lo activa a propósito,
@@ -1340,7 +1430,9 @@ footer{
       dist: { sibiu: { km: 90, time: "1h30" } } },
     { name: "Viscri", lat: 46.0545, lng: 25.0905, type: "pueblo", desc: "Pueblo sajón de postal, con casa propia del rey Carlos III de Inglaterra. Algo alejado pero muy fotogénico.",
       dist: { sibiu: { km: 121, time: "2h" } } },
-    { name: "Cárpatos (Păltiniș)", lat: 45.6828, lng: 23.9836, type: "naturaleza", desc: "La zona de montaña de la opción B: estación de Păltiniș, en pleno macizo de Cindrel. Aquí caería la noche de casa rural, barbacoa y nieve.",
+    { name: "Teleférico Bâlea Cascadă", lat: 45.6081, lng: 24.6167, type: "naturaleza", desc: "La excursión de la opción 3: teleférico hasta más de 2.000m en los Cárpatos de Făgăraș, con el lago helado de Bâlea arriba. En invierno, la Transfăgărășan se cierra y esta es la única forma de subir.",
+      dist: { sibiu: { km: 65, time: "1h15-1h30" } } },
+    { name: "Păltiniș", lat: 45.6828, lng: 23.9836, type: "naturaleza", desc: "Estación de montaña más pequeña, en el macizo de Cindrel — una alternativa de nieve más cerca de Sibiu, sin teleférico.",
       dist: { sibiu: { km: 35, time: "50 min" } } },
     { name: "Bucarest", lat: 44.4305, lng: 26.1063, type: "ciudad", desc: "La capital de Rumanía, al sur. Tienes 2 días después de que el grupo vuelva (8-9 dic) para exprimir los mercadillos navideños, los pubs históricos y la vida nocturna.",
       dist: { sibiu: { km: 280, time: "5h30" } } }
@@ -1389,6 +1481,21 @@ footer{
       navMenu.classList.remove('open');
       navToggle.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Comparativa rápida: tocar una tarjeta selecciona su opción y baja al detalle
+  function selectOption(card){
+    const target = card.dataset.opt;
+    document.querySelectorAll('.opt-card-clickable').forEach(c => c.classList.toggle('active', c === card));
+    document.querySelectorAll('.opt-panel').forEach(p => p.classList.toggle('active', p.id === 'opt-panel-' + target));
+    const anchor = document.getElementById('detalle-anchor');
+    if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  document.querySelectorAll('.opt-card-clickable').forEach(card => {
+    card.addEventListener('click', () => selectOption(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectOption(card); }
     });
   });
 </script>
