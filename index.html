@@ -101,7 +101,22 @@ h1,h2,h3{font-family:'Cinzel', serif; letter-spacing:0.3px;}
 .quicknav-menu a:active{color:var(--gold-bright); background:var(--wine-light);}
 .quicknav-menu a:last-child{border-bottom:none;}
 
-/* ---------- NOTAS DE LA RUTA ---------- */
+/* ---------- BIFURCACIÓN DE RUTAS (quién va por dónde) ---------- */
+.path-split{display:flex; flex-wrap:wrap; gap:14px; margin:14px 0 10px;}
+.path-card{
+  flex:1; min-width:220px; border-radius:14px; padding:16px; border:1px solid var(--line);
+}
+.path-card.return{background:rgba(230,168,87,0.08); border-color:rgba(230,168,87,0.4);}
+.path-card.extend{background:rgba(124,144,196,0.08); border-color:rgba(124,144,196,0.4);}
+.path-card-title{font-family:'Cinzel',serif; font-weight:700; font-size:13px; margin-bottom:10px;}
+.path-card.return .path-card-title{color:var(--gold-bright);}
+.path-card.extend .path-card-title{color:#A9BCE8;}
+.path-people{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;}
+.path-person{
+  font-family:'Poppins',sans-serif; font-size:11.5px; font-weight:600;
+  background:rgba(0,0,0,0.22); border-radius:999px; padding:5px 11px; white-space:nowrap;
+}
+.path-card-desc{font-size:12px; color:var(--cream-dim); line-height:1.4;}
 .isma-note{
   margin-top:10px; padding:10px 12px; border-radius:10px;
   background:rgba(124,144,196,0.12); border:1px solid rgba(124,144,196,0.3);
@@ -608,10 +623,6 @@ footer{
         <span style="display:block;">• <b>Extiendes al 9 dic</b> — Brașov + Bucarest de propina</span>
       </p>
     </div>
-
-    <div style="max-width:620px; margin:24px auto 0; background:var(--wine-light); border:1px solid var(--line); border-radius:14px; padding:20px; text-align:center;">
-      <p style="font-size:13px; color:var(--cream-dim); margin:0;"><b>💡 Hay vuelos diarios a y desde Cluj</b> — si el del grupo no te viene bien, busca el que te encaje y avísale a la gente para cuadrarlo. Nadie se queda fuera por moverse por libre.</p>
-    </div>
   </section>
 
   <!-- CALENDARIO VACACIONES -->
@@ -915,7 +926,7 @@ footer{
               <div class="stay-box-addr">Strada Meteor nr. 13, ap. 9, Cluj-Napoca</div>
             </div>
             <div class="stay-box-actions">
-              <a class="stay-box-link" href="https://www.google.com/maps/dir/?api=1&destination=46.75435,23.593967" target="_blank" rel="noopener">🗺️ Cómo llegar</a>
+              <a class="stay-box-link" href="https://www.google.com/maps/dir/?api=1&destination=46.75435,23.593967">🗺️ Cómo llegar</a>
               <a class="stay-box-link doc" href="https://drive.google.com/file/d/1_nz_VZ93Mo0XPsUy8ohkR3P-HJhS_QyL/view?usp=drivesdk" target="_blank" rel="noopener">📄 Ver reserva</a>
             </div>
           </div>
@@ -955,7 +966,7 @@ footer{
               <div class="stay-box-addr">Ecaterina Varga, nr. 12A, Sighișoara</div>
             </div>
             <div class="stay-box-actions">
-              <a class="stay-box-link" href="https://www.google.com/maps/dir/?api=1&destination=46.21905,24.785933" target="_blank" rel="noopener">🗺️ Cómo llegar</a>
+              <a class="stay-box-link" href="https://www.google.com/maps/dir/?api=1&destination=46.21905,24.785933">🗺️ Cómo llegar</a>
               <a class="stay-box-link doc" href="https://drive.google.com/file/d/1N1IS1iohxstzT-lNDu_pHJBwhvASBpp7/view?usp=drivesdk" target="_blank" rel="noopener">📄 Ver reserva</a>
             </div>
           </div>
@@ -975,7 +986,7 @@ footer{
               <div class="stay-box-addr">Str. Constantin Noica 53, Sibiu</div>
             </div>
             <div class="stay-box-actions">
-              <a class="stay-box-link" href="https://www.google.com/maps/dir/?api=1&destination=45.7902,24.152767" target="_blank" rel="noopener">🗺️ Cómo llegar</a>
+              <a class="stay-box-link" href="https://www.google.com/maps/dir/?api=1&destination=45.7902,24.152767">🗺️ Cómo llegar</a>
               <a class="stay-box-link doc" href="https://drive.google.com/file/d/1-vHID0FhQ0LmHt87nDvZEp8I9POHHr3z/view?usp=drivesdk" target="_blank" rel="noopener">📄 Ver reserva</a>
             </div>
           </div>
@@ -998,15 +1009,41 @@ footer{
           <div class="t-day">LUN 7 DIC</div>
           <div class="t-title">El grupo se separa</div>
           <div class="t-desc">Salida de Sibiu por la mañana. A partir de aquí, cada uno según su vuelo:</div>
-          <div class="t-extra"><b>✈️ Vuelta directa:</b> traslado a Cluj y vuelo CLJ → MAD a las 17:20h.</div>
-          <div class="t-extra"><b>🏛️ Extensión a Bucarest:</b> traslado a Brașov (2h40) para pasar allí la noche.</div>
+
+          <div class="path-split">
+            <div class="path-card return">
+              <div class="path-card-title">✈️ Vuelta directa</div>
+              <div class="path-people">
+                <span class="path-person">🦶 Pari</span>
+                <span class="path-person">🚬 Vero</span>
+                <span class="path-person">🥤 Kike</span>
+                <span class="path-person">💰 Anita Obre</span>
+                <span class="path-person">🛠️ Rubio</span>
+              </div>
+              <div class="path-card-desc">Traslado a Cluj y vuelo CLJ → MAD a las 17:20h.</div>
+            </div>
+            <div class="path-card extend">
+              <div class="path-card-title">🏛️ Extensión a Bucarest</div>
+              <div class="path-people">
+                <span class="path-person">🍇 Terra</span>
+                <span class="path-person">💇 Alcalde</span>
+                <span class="path-person">🍔 Juandi</span>
+                <span class="path-person">💊👆 Chigo</span>
+                <span class="path-person">🍺 Silvia</span>
+              </div>
+              <div class="path-card-desc">Traslado a Brașov (2h40) para pasar allí la noche, y a Bucarest al día siguiente.</div>
+            </div>
+          </div>
+
+          <div class="isma-note">📻🎤 <b>Isma y María</b> tienen fechas propias (4-8 dic) — vuelan por su cuenta desde Cluj el martes 8, así que este lunes se despiden del grupo por separado.</div>
+
           <div class="stay-box">
             <div class="stay-box-info">
               <div class="stay-box-name">🛏️ La Maisonnette (solo extensión)</div>
               <div class="stay-box-addr">Piața Sfatului, nr. 6, Brașov</div>
             </div>
             <div class="stay-box-actions">
-              <a class="stay-box-link" href="https://www.google.com/maps/dir/?api=1&destination=45.642467,25.58965" target="_blank" rel="noopener">🗺️ Cómo llegar</a>
+              <a class="stay-box-link" href="https://www.google.com/maps/dir/?api=1&destination=45.642467,25.58965">🗺️ Cómo llegar</a>
               <a class="stay-box-link doc" href="https://drive.google.com/file/d/1sekwYx-nMKi9SN4W2VJnUP3A1PTM7JTL/view?usp=drivesdk" target="_blank" rel="noopener">📄 Ver reserva</a>
             </div>
           </div>
@@ -1025,7 +1062,7 @@ footer{
               <div class="stay-box-addr">Strada Cornelia 38, Sectorul 4, Bucarest</div>
             </div>
             <div class="stay-box-actions">
-              <a class="stay-box-link" href="https://www.google.com/maps/dir/?api=1&destination=44.419917,26.098183" target="_blank" rel="noopener">🗺️ Cómo llegar</a>
+              <a class="stay-box-link" href="https://www.google.com/maps/dir/?api=1&destination=44.419917,26.098183">🗺️ Cómo llegar</a>
               <a class="stay-box-link doc" href="https://drive.google.com/file/d/1uLUFJE1MhTu-StYrH3TS7Fiqae1CjI7-/view?usp=drivesdk" target="_blank" rel="noopener">📄 Ver reserva</a>
             </div>
           </div>
@@ -1088,7 +1125,7 @@ footer{
           <div class="stay-box-addr">Piața Sfatului, nr. 6, Brașov</div>
         </div>
         <div class="stay-box-actions">
-          <a class="stay-box-link" href="https://www.google.com/maps/dir/?api=1&destination=45.642467,25.58965" target="_blank" rel="noopener">🗺️ Cómo llegar</a>
+          <a class="stay-box-link" href="https://www.google.com/maps/dir/?api=1&destination=45.642467,25.58965">🗺️ Cómo llegar</a>
           <a class="stay-box-link doc" href="https://drive.google.com/file/d/1sekwYx-nMKi9SN4W2VJnUP3A1PTM7JTL/view?usp=drivesdk" target="_blank" rel="noopener">📄 Ver reserva</a>
         </div>
       </div>
@@ -1098,7 +1135,7 @@ footer{
           <div class="stay-box-addr">Strada Cornelia 38, Sectorul 4, Bucarest</div>
         </div>
         <div class="stay-box-actions">
-          <a class="stay-box-link" href="https://www.google.com/maps/dir/?api=1&destination=44.419917,26.098183" target="_blank" rel="noopener">🗺️ Cómo llegar</a>
+          <a class="stay-box-link" href="https://www.google.com/maps/dir/?api=1&destination=44.419917,26.098183">🗺️ Cómo llegar</a>
           <a class="stay-box-link doc" href="https://drive.google.com/file/d/1uLUFJE1MhTu-StYrH3TS7Fiqae1CjI7-/view?usp=drivesdk" target="_blank" rel="noopener">📄 Ver reserva</a>
         </div>
       </div>
@@ -1264,7 +1301,7 @@ footer{
       if (p.dist[key]) {
         const hub = HUBS[key];
         rows += `<div class="popup-dist"><span>📍 Desde ${hub.label}</span><span>${p.dist[key].km} km · ${p.dist[key].time}</span></div>`;
-        btns += `<a href="${gmapsLink(hub, p)}" target="_blank" rel="noopener">🗺️ Ruta desde ${hub.label}</a>`;
+        btns += `<a href="${gmapsLink(hub, p)}">🗺️ Ruta desde ${hub.label}</a>`;
       }
     }
     const addr = p.address ? `<div class="popup-address">📍 ${p.address}</div>` : '';
