@@ -1249,7 +1249,7 @@ footer{
   };
 
   function gmapsLink(hub, dest){
-    return `https://www.google.com/maps/dir/?api=1&origin=${hub.lat},${hub.lng}&query=${dest.lat},${dest.lng}&travelmode=driving`;
+    return `https://www.google.com/maps/dir/?api=1&origin=${hub.lat},${hub.lng}&destination=${dest.lat},${dest.lng}&travelmode=driving`;
   }
 
   const points = [
